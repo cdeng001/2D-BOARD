@@ -1,5 +1,4 @@
-#ifndef __consts__
-#define __consts__
+#pragma once
 
 
 //Screen dimension constants
@@ -104,6 +103,16 @@ enum {
 	Logan_Grimnar,
 	Kaldor_Draigo,
 
+	//starcraft
+	Jim_Raynor,
+	Tychus_Findley,
+	Annabeth_Terra,
+	Artanis,
+	Zeratul,
+	Tassadar,
+	Sarah_Kerrigan,
+	Zagara,
+
 	TOTAL_MONSTER_SPRITES
 };
 
@@ -181,4 +190,3 @@ enum button_name{
 
 	TOTAL_BUTTONS
 };
-#endif

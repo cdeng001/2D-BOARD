@@ -7,6 +7,7 @@
 #include "Consts.h"
 #include "stdlib.h"
 #include <iostream>
+#include "Globals.h"
 
 Team::Team():
 max_capacity(TEAM_SIZE), cur_capacity(0)
@@ -103,39 +104,39 @@ void Team::addMonster(int i, int x, int y)
 			team[cur_capacity] = temp;
 			break;
 		case Diablo:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Diablo Lord of Hatred", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Diablo", i);
 			team[cur_capacity] = temp;
 			break;
 		case Mephisto:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Mephisto Lord of Terror", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Mephisto", i);
 			team[cur_capacity] = temp;
 			break;
 		case Baal:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Baal Lord of Destruction", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Baal", i);
 			team[cur_capacity] = temp;
 			break;
 		case King_Leoric:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Leoric Skeleton King", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "King Leoric", i);
 			team[cur_capacity] = temp;
 			break;
 		case Imperius:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Imperius Archangel of Valor", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Imperius", i);
 			team[cur_capacity] = temp;
 			break;
 		case Tyrael:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Tyreal Aspect of Wisdom", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Tyreal", i);
 			team[cur_capacity] = temp;
 			break;
 		case Malthael:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Malthael The Reaper", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Malthael", i);
 			team[cur_capacity] = temp;
 			break;
 		case Izual:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Izual The Betrayer", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Izual", i);
 			team[cur_capacity] = temp;
 			break;
 		case Mephiston:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Mephiston Lord of Death", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Mephiston", i);
 			team[cur_capacity] = temp;
 			break;
 		case Swarm_Lord:
@@ -147,19 +148,19 @@ void Team::addMonster(int i, int x, int y)
 			team[cur_capacity] = temp;
 			break;
 		case Typhus:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Typhus the Traveller", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Typhus", i);
 			team[cur_capacity] = temp;
 			break;
 		case Kharn:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Kharn Champion of Khorn", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Kharn", i);
 			team[cur_capacity] = temp;
 			break;
 		case Ahriman:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Ahriman of Thousand Suns", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Ahriman ", i);
 			team[cur_capacity] = temp;
 			break;
 		case Lucius:
-			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Lucius the Eternal", i);
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Lucius", i);
 			team[cur_capacity] = temp;
 			break;
 		case Kaela_Meinsha_Khaine:
@@ -196,6 +197,38 @@ void Team::addMonster(int i, int x, int y)
 			break;
 		case Kaldor_Draigo:
 			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Kaldor Draigo", i);
+			team[cur_capacity] = temp;
+			break;
+		case Jim_Raynor:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Jim Raynor", i);
+			team[cur_capacity] = temp;
+			break;
+		case Tychus_Findley:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Tychus Findley", i);
+			team[cur_capacity] = temp;
+			break;
+		case Annabeth_Terra:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Nova", i);
+			team[cur_capacity] = temp;
+			break;
+		case Artanis:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Artanis", i);
+			team[cur_capacity] = temp;
+			break;
+		case Zeratul:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Zeratul", i);
+			team[cur_capacity] = temp;
+			break;
+		case Tassadar:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Tassadar", i);
+			team[cur_capacity] = temp;
+			break;
+		case Sarah_Kerrigan:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Kerrigan", i);
+			team[cur_capacity] = temp;
+			break;
+		case Zagara:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Zagara", i);
 			team[cur_capacity] = temp;
 			break;
 		default:

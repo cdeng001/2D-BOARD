@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Consts.h"
 #include "stdlib.h"
+#include "Globals.h"
 
 Button::Button() :
 Tile(0, 0, 0), buttonAction(NULL), buttonName("")
@@ -66,4 +67,39 @@ void Button::setSize(int w, int h)
 std::string Button::getName()
 {
 	return this->buttonName;
+}
+
+
+void Button::render(int i)
+{
+	LTexture gTextTexture;
+	SDL_Color textColor;
+	if (buttonSet[i]->Tile::checkClick(mouse_x, mouse_y))
+	{
+		gButtonTexture.render(buttonSet[i]->getBox().x, buttonSet[i]->getBox().y, &gButtonClips[HOVER_BUTTON]);
+		textColor = { 238, 187, 21 };
+	}
+	else
+	{
+		gButtonTexture.render(buttonSet[i]->getBox().x, buttonSet[i]->getBox().y, &gButtonClips[UP_BUTTON]);
+		textColor = { 164, 164, 164 };
+	}
+
+	gTextTexture.loadFromRenderedText(buttonName, textColor);
+	gTextTexture.render(mBox.x + mBox.w / 4, mBox.y + mBox.h / 4);
+
+	gTextTexture.free();
+}
+
+void Button::render(SDL_Rect camera, int y)
+{
+	SDL_Rect nBox(camera);
+	nBox.x = 0;
+	nBox.y = 0;
+
+	if (checkCollision(nBox, mBox))
+	{
+		//Show the tile
+		gMonsterTexture.render(mBox.x - camera.x, y, &gMonsterClips[mType]);
+	}
 }

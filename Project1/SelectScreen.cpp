@@ -10,6 +10,7 @@
 #include "ButtonFunctions.h"
 #include "SelectScreen.h"
 #include <iostream>
+#include "Globals.h"
 
 
 
@@ -151,6 +152,30 @@ std::string SelectScreen::getMonster(int i, Button &b)
 	case Kaldor_Draigo:
 		return "Lord Kaldor Draigo";
 		break;
+	case Jim_Raynor:
+		return "James Eugene \"Jim\" Raynor";
+		break;
+	case Tychus_Findley:
+		return "Tychus J. Findley";
+		break;
+	case Annabeth_Terra:
+		return "November Annabeth \"Nova\" Terra";
+		break;
+	case Artanis:
+		return "Artanis, Praetor of Defense";
+		break;
+	case Zeratul:
+		return "Zeratul the Dark Templar";
+		break;
+	case Tassadar:
+		return "Tassadar, Savior of the Templar";
+		break;
+	case Sarah_Kerrigan:
+		return "Sarah Kerrigan, The Queen of Blades";
+		break;
+	case Zagara:
+		return "Broodmother Zagara";
+		break;
 	default:
 		return " ";
 		break;
@@ -176,12 +201,12 @@ void SelectScreen::togglePlayer()
 	if (current == PLAYER1)
 	{
 		current = PLAYER2;
-		std::cout << "player2 choose" << std::endl;
+		std::cout << "player2" << std::endl;
 	}
 	else 
 	{
 		current = PLAYER1;
-		std::cout << "player1 choose" << std::endl;
+		std::cout << "player1" << std::endl;
 	}
 }
 
@@ -215,4 +240,119 @@ bool SelectScreen::checkList(int x)
 		}
 	}
 	return false;
+}
+
+
+SelectScreen::SelectScreen(int a) :
+Menu(a), current(PLAYER1), curr_hover(INT_MAX), listSize(0)
+{
+	for (int i = 0; i < TEAM_SIZE * 2; i++)
+	{
+		list[i] = NULL;
+	}
+
+	buttonSet[SELECT_BUTTON] = new Button();
+	buttonSet[SELECT_BUTTON]->setLoc(SCREEN_WIDTH / 2 - BUTTON_WIDTH / 2, ((SCREEN_HEIGHT - SCREEN_HEIGHT / 4) - BUTTON_HEIGHT / 2) - 5);
+	buttonSet[SELECT_BUTTON]->setActionFunction(changeToStart);
+	buttonSet[SELECT_BUTTON]->setName("Start");
+	getButtonFunction();
+}
+
+void SelectScreen::menuDisplay(SDL_Rect &menuCamera, SDL_Rect &windowCamera, int scrolling_offset)
+{
+	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
+	SDL_Rect nBox;
+	nBox.x = 0;
+	nBox.y = 0;
+	nBox.w = SCREEN_WIDTH;
+	nBox.h = SCREEN_HEIGHT;
+	SDL_RenderFillRect(gRenderer, &nBox);
+
+	gSelectWindow.render(100, 10, &windowCamera);
+	gScrollingBG.render(scrolling_offset, 0, &menuCamera);
+	gScrollingBG.render(scrolling_offset + gScrollingBG.getWidth(), 0, &menuCamera);
+
+	for (int i = 0; i < TOTAL_MONSTER_SPRITES; i++)
+	{
+		characterSet[i]->render(windowCamera, characterSet[i]->getRow());
+		if (checkList(i))
+		{
+			gOverlay.render((characterSet[i]->getBox().x - windowCamera.x), characterSet[i]->getRow(), &gOverlays[X_MARK]);
+		}
+	}
+
+	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
+	nBox.x = 0;
+	nBox.y = 0;
+	nBox.w = SCREEN_WIDTH;
+	nBox.h = 10;
+	SDL_RenderFillRect(gRenderer, &nBox);
+
+	gSelectOverlay.render(0, 0, &menuCamera);
+	buttonSet[SELECT_BUTTON]->render(SELECT_BUTTON);
+
+	for (int i = 0; i < TEAM_SIZE; i++)
+	{
+		if (team1.getMonster(i) != NULL)
+		{
+			team1.getMonster(i)->renderAt(menuCamera, 20, 50 + (TILE_HEIGHT + 10)*i);
+		}
+		else
+		{
+			gOverlay.render(20, 50 + (TILE_HEIGHT + 10)*i, &gOverlays[QUESTION_MARK]);
+		}
+		if (team2.getMonster(i) != NULL)
+		{
+			team2.getMonster(i)->renderAt(menuCamera, (SCREEN_WIDTH - 20) - TILE_WIDTH, (TILE_HEIGHT + 10)*(i + 1));
+		}
+		else
+		{
+			gOverlay.render((SCREEN_WIDTH - 20) - TILE_WIDTH, (TILE_HEIGHT + 10)*(i + 1), &gOverlays[QUESTION_MARK]);
+		}
+	}
+
+	if (curr_hover < TOTAL_MONSTER_SPRITES)
+	{
+
+		gLargeMonsterTexture.render(50, (SCREEN_HEIGHT - AVATAR_HEIGHT) - 25, &gAvatarClips[curr_hover]);
+		LTexture gTextTexture;
+
+		SDL_Color textColor = { 0, 0, 0 };
+		gTextTexture.loadFromRenderedText(characterSet[curr_hover]->getName(), textColor);
+		gTextTexture.render(100 + AVATAR_WIDTH, (SCREEN_HEIGHT - AVATAR_HEIGHT) - 25);
+
+		gTextTexture.free();
+
+	}
+}
+
+void SelectScreen::getButtonFunction()
+{
+	int x = 0;
+	int h_offset = 50;
+	int w_offset = 150;
+	enum { WOW = 0, DIABLO = 1, WH = 2, SC = 4 };
+	while (x < TOTAL_MONSTER_SPRITES)
+	{
+		for (int j = 0; j < (SCREEN_HEIGHT / TILE_HEIGHT); j++)
+		{
+			for (int k = 0; k < ((SCREEN_WIDTH / TILE_WIDTH) / 2); k++)
+			{
+				if (x >= TOTAL_MONSTER_SPRITES){ return; }
+				Button* temp = new Button();
+				temp->setLoc(k * TILE_WIDTH + w_offset, j * TILE_HEIGHT + h_offset);
+				temp->setRow(j * TILE_HEIGHT + h_offset);
+				temp->setName(getMonster(x, *temp));
+				temp->setSize(TILE_WIDTH, TILE_HEIGHT);
+				characterSet[x] = temp;
+				x++;
+			}
+			if (j == DIABLO || j == WH || j == SC)
+			{
+				h_offset += 60;
+			}
+			if (x >= TOTAL_MONSTER_SPRITES){ return; }
+		}
+	}
+
 }

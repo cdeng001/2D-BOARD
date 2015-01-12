@@ -21,6 +21,58 @@
 #include "SelectScreen.h"
 #include "Team.h"
 
+bool init();
+
+void loadMusic();
+
+bool loadMedia(Tile* tiles[]);
+
+void close(Tile* tiles[]);
+
+bool checkCollision(SDL_Rect a, SDL_Rect b);
+
+//Clipping Functions
+/**/bool setTiles(Tile* tiles[]);
+/**/
+/**/void clipTarget(SDL_Rect gRect[], int name, int x, int y, int w, int h);
+/**/
+/**/bool setMonsters();
+/**/
+/**/void clipAvatars();
+/**/
+/**/void clipStatTemp();
+/**/
+/**/void clipOverlays();
+/**/
+/**/void clipButtons();
+//End of clipping functions
+
+void getTaunt(int i);
+
+void checkClickMonster(int x, int y, Monster* &target, int gameState);
+
+void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss);
+
+void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hover, int gameState, SelectScreen &ss);
+
+void mouseWheelHandle(SDL_Event e, SDL_Rect &window_screen, SelectScreen &ss);
+
+void keyBoardHandle(SDL_Event e, Tile* tiles[], SDL_Rect &camera, Monster* &target, int &gameState, SelectScreen &ss);
+
+bool touchesWall(SDL_Rect box, Tile* tiles[]);
+
+//populate the rects
+int getY(int a);
+
+void populateStatLoc();
+
+void populateIcon(Icon* iconSet[]);
+
+void displayBlank();
+
+void readGameState(int gameState, Monster* &target, Tile* tile[], SDL_Rect &camera);
+
+
 //The window we'll be rendering to
 extern SDL_Window* gWindow;
 
@@ -78,3 +130,4 @@ extern Mix_Chunk *gDiablo_Select;
 extern Mix_Chunk *gMephisto_Select;
 extern Mix_Chunk *gBaal_Select;
 extern Mix_Chunk *gMalthael_Select;
+

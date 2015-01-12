@@ -8,6 +8,7 @@
 #include "LTexture.h"
 #include "iostream"
 #include <cmath>
+#include "Globals.h"
 
 Icon::Icon() :
 Tile(0, 0, 0)
@@ -71,4 +72,37 @@ void Icon::setLoc(int x, int y)
 {
 	this->mBox.x = x;
 	this->mBox.y = y;
+}
+
+
+void Icon::render(SDL_Rect& camera)
+{
+	//Show the tile
+	gOverlay.setAlpha(255);
+	gOverlay.render(mBox.x, mBox.y, &gOverlays[mType]);
+}
+
+void Icon::showHoverText(int mouse_x, int mouse_y)
+{
+	if (this->checkClick(mouse_x, mouse_y))
+	{
+		LTexture gTextTexture;
+
+		gTextTexture.setBlendMode(SDL_BLENDMODE_ADD);
+		SDL_SetRenderDrawBlendMode(gRenderer, SDL_BLENDMODE_ADD);
+		SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 50);
+		SDL_Rect nBox;
+		TTF_SizeText(gFont, onHoverText.c_str(), &nBox.w, &nBox.h);
+		nBox.x = mouse_x + nBox.w / 2;
+		nBox.y = mouse_y;
+		nBox.w += 5;
+		SDL_RenderFillRect(gRenderer, &nBox);
+
+		SDL_Color textColor = { 0, 0, 0 };
+		gTextTexture.loadFromRenderedText(onHoverText, textColor);
+		gTextTexture.render(nBox.x + 5, nBox.y);
+
+		gTextTexture.free();
+
+	}
 }

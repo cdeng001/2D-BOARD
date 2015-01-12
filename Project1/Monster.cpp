@@ -2,6 +2,7 @@
 #include "Consts.h"
 #include "stdlib.h"
 #include "iostream"
+#include "Globals.h"
 #include <cmath>
 
 
@@ -64,6 +65,10 @@ bool Monster::is_weakness()
 
 std::string Monster::get_name()
 {
+	if (last == " ")
+	{
+		return first + last;
+	}
 	return this->first + " " + last;
 }
 
@@ -125,4 +130,159 @@ bool Monster::checkDead()
 		return true;
 	}
 	return false;
+}
+
+
+void Monster::render(SDL_Rect& camera)
+{
+	//If the tile is on screen
+	if (checkCollision(camera, mBox))
+	{
+		//Show the tile
+		gMonsterTexture.render(mBox.x - camera.x, mBox.y - camera.y, &gMonsterClips[mType]);
+	}
+}
+
+void Monster::displayMenu()
+{
+	LTexture gTextTexture;
+	SDL_Color textColor = { 255, 255, 255 };
+
+	gLargeMonsterTexture.render(20, SUBSCREEN_HEIGHT + 20, &gAvatarClips[mType]);
+
+	//display first name
+	gTextTexture.loadFromRenderedTextSmall(first, textColor);
+	gTextTexture.render(20, SUBSCREEN_HEIGHT + AVATAR_HEIGHT + 30);
+	gTextTexture.free();
+
+	//display last name
+	gTextTexture.loadFromRenderedTextSmall(last, textColor);
+	gTextTexture.render(20, SUBSCREEN_HEIGHT + AVATAR_HEIGHT + 45);
+	gTextTexture.free();
+
+	//Render text
+	textColor = { 0, 0, 0 };
+
+	//place templates
+	gStatTemplate.render(healthBlock.x, healthBlock.y, &gStatClips[HEALTH]);
+	gStatTemplate.render(attackBlock.x, attackBlock.y, &gStatClips[ATTACK]);
+	gStatTemplate.render(rangeBlock.x, rangeBlock.y, &gStatClips[RANGE]);
+	gStatTemplate.render(speedBlock.x, speedBlock.y, &gStatClips[SPEED]);
+
+	//place stat values
+	std::string healthDisplay = std::to_string(current_health) + " / " + std::to_string(health);
+	gTextTexture.loadFromRenderedText(healthDisplay, textColor);
+	gTextTexture.render(healthBlock.x + 50, healthBlock.y);
+
+	std::string attackDisplay = std::to_string(attack);
+	gTextTexture.loadFromRenderedText(attackDisplay, textColor);
+	gTextTexture.render(attackBlock.x + 50, attackBlock.y);
+
+	std::string rangeDisplay = std::to_string(range);
+	gTextTexture.loadFromRenderedText(rangeDisplay, textColor);
+	gTextTexture.render(rangeBlock.x + 50, rangeBlock.y);
+
+	std::string speedDisplay = std::to_string(speed);
+	gTextTexture.loadFromRenderedText(speedDisplay, textColor);
+	gTextTexture.render(speedBlock.x + 50, speedBlock.y);
+
+	gTextTexture.free();
+	return;
+}
+
+void Monster::displayAction(SDL_Rect &camera)
+{
+	LTexture gTextTexture;
+	SDL_Color textColor = { 255, 255, 255 };
+
+	gLargeMonsterTexture.render(20, SUBSCREEN_HEIGHT + 20, &gAvatarClips[mType]);
+
+	//display first name
+	gTextTexture.loadFromRenderedTextSmall(first, textColor);
+	gTextTexture.render(20, SUBSCREEN_HEIGHT + AVATAR_HEIGHT + 30);
+	gTextTexture.free();
+
+	//display last name
+	gTextTexture.loadFromRenderedTextSmall(last, textColor);
+	gTextTexture.render(20, SUBSCREEN_HEIGHT + AVATAR_HEIGHT + 45);
+	gTextTexture.free();
+
+	iconSet[damageType]->render(camera);
+	return;
+}
+
+bool Monster::checkInRange(Monster* target, int r)
+{
+	bool inRange = false;
+	//check if it is same monster
+	if ((target->getCol() == (col)) && (target->getRow() == (row)))
+	{
+		return inRange;
+	}
+
+	if (current_health <= 0)
+	{
+		return inRange;
+	}
+
+	int check = abs(target->getCol() - (col)) + abs(target->getRow() - (row));
+	if (r = MOVEMENT)
+	{
+		if (check <= target->speed)
+		{
+			inRange = true;
+		}
+	}
+	else if (r = BATTLE)
+	{
+		if (check <= target->range)
+		{
+			inRange = true;
+		}
+	}
+
+	return inRange;
+}
+
+bool Monster::moveUnit(int x, int y)
+{
+	bool success = true;
+
+	int check = abs(x - (col + 1)) + abs(y - (row + 1));
+
+	for (int i = 0; i < TEAM_SIZE; i++)
+	{
+		if ((team1.getMonster(i)->getCol() + 1 == x) && (team1.getMonster(i)->getRow() + 1 == y))
+		{
+			return false;
+		}
+		if ((team2.getMonster(i)->getCol() + 1 == x) && (team2.getMonster(i)->getRow() + 1 == y))
+		{
+			return false;
+		}
+	}
+
+	if (check <= speed)
+	{
+		col = x - 1;
+		row = y - 1;
+		mBox.x = (x - 1) * TILE_WIDTH;
+		mBox.y = (y - 1) * TILE_HEIGHT;
+	}
+	else
+	{
+		success = false;
+	}
+
+	return success;
+}
+
+void Monster::renderAt(SDL_Rect& camera, int x, int y)
+{
+	//If the tile is on screen
+	if (checkCollision(camera, mBox))
+	{
+		//Show the tile
+		gMonsterTexture.render(x, y, &gMonsterClips[mType]);
+	}
 }

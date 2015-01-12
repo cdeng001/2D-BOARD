@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Monster.h"
 #include "Consts.h"
+#include "Globals.h"
 
 void changeToStart(int &gameState)
 {
