@@ -99,7 +99,7 @@ void Icon::showHoverText(int mouse_x, int mouse_y)
 		SDL_RenderFillRect(gRenderer, &nBox);
 
 		SDL_Color textColor = { 0, 0, 0 };
-		gTextTexture.loadFromRenderedText(onHoverText, textColor);
+		gTextTexture.loadFromRenderedText(gFont, onHoverText, textColor);
 		gTextTexture.render(nBox.x + 5, nBox.y);
 
 		gTextTexture.free();

@@ -7,6 +7,7 @@
 
 void changeToStart(int &gameState)
 {
+	scrolling_offset = 0;
 	gameState = IDLE;
 	return;
 }

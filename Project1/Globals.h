@@ -72,6 +72,7 @@ void displayBlank();
 
 void readGameState(int gameState, Monster* &target, Tile* tile[], SDL_Rect &camera);
 
+void transitionAnimate(int scrolling_offset, bool &start);
 
 //The window we'll be rendering to
 extern SDL_Window* gWindow;
@@ -81,6 +82,7 @@ extern SDL_Renderer* gRenderer;
 
 //Mouse location
 extern int mouse_x, mouse_y;
+extern int scrolling_offset;
 
 //Scene textures
 extern LTexture gDotTexture;
@@ -95,6 +97,7 @@ extern LTexture gMenuBackground;
 extern LTexture gScrollingBG;
 extern LTexture gSelectOverlay;
 extern LTexture gSelectWindow;
+extern LTexture gStartTexture;
 
 //Clip arrays
 extern SDL_Rect gTileClips[TOTAL_TILE_SPRITES];

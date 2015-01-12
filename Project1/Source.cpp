@@ -52,6 +52,7 @@ int main(int argc, char* args[])
 		{
 			//Main loop flag
 			bool quit = false;
+			bool gameStart = false;
 
 			//Event handler
 			SDL_Event e;
@@ -59,7 +60,7 @@ int main(int argc, char* args[])
 			//The dot that will be moving around on the screen
 			Dot dot;
 			int gameState = MENU_SCREEN;
-			int scrolling_offset = 0;
+			int turnPlayer = 0;
 			Monster* target = NULL;
 			Monster* hover = NULL;
 
@@ -237,6 +238,11 @@ int main(int argc, char* args[])
 						SDL_RenderFillRect(gRenderer, &nBox);
 
 						SDL_SetRenderDrawBlendMode(gRenderer, SDL_BLENDMODE_NONE);
+					}
+					if (!gameStart)
+					{
+						transitionAnimate(scrolling_offset, gameStart);
+						scrolling_offset += 5;
 					}
 				}
 				

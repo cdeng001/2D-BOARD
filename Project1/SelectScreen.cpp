@@ -176,6 +176,30 @@ std::string SelectScreen::getMonster(int i, Button &b)
 	case Zagara:
 		return "Broodmother Zagara";
 		break;
+	case Thestalos:
+		return "Thestalos the Firestorm Monarch";
+		break;
+	case Mobius:
+		return "Mobius the Frost Monarch";
+		break;
+	case Granmarg:
+		return "Granmarg the Rock Monarch";
+		break;
+	case Zaborg:
+		return "Zaborg the Thunder Monarch";
+		break;
+	case Raiza:
+		return "Raiza the Storm Monarch";
+		break;
+	case Caius:
+		return "Caius the Shadow Monarch";
+		break;
+	case Dark_Magician:
+		return "The Dark Magician";
+		break;
+	case Blue_Eyes:
+		return "Blue Eyes White Dragon";
+		break;
 	default:
 		return " ";
 		break;
@@ -295,7 +319,7 @@ void SelectScreen::menuDisplay(SDL_Rect &menuCamera, SDL_Rect &windowCamera, int
 	{
 		if (team1.getMonster(i) != NULL)
 		{
-			team1.getMonster(i)->renderAt(menuCamera, 20, 50 + (TILE_HEIGHT + 10)*i);
+			team1.getMonster(i)->renderAt( 20, 50 + (TILE_HEIGHT + 10)*i);
 		}
 		else
 		{
@@ -303,7 +327,7 @@ void SelectScreen::menuDisplay(SDL_Rect &menuCamera, SDL_Rect &windowCamera, int
 		}
 		if (team2.getMonster(i) != NULL)
 		{
-			team2.getMonster(i)->renderAt(menuCamera, (SCREEN_WIDTH - 20) - TILE_WIDTH, (TILE_HEIGHT + 10)*(i + 1));
+			team2.getMonster(i)->renderAt( (SCREEN_WIDTH - 20) - TILE_WIDTH, (TILE_HEIGHT + 10)*(i + 1));
 		}
 		else
 		{
@@ -318,7 +342,7 @@ void SelectScreen::menuDisplay(SDL_Rect &menuCamera, SDL_Rect &windowCamera, int
 		LTexture gTextTexture;
 
 		SDL_Color textColor = { 0, 0, 0 };
-		gTextTexture.loadFromRenderedText(characterSet[curr_hover]->getName(), textColor);
+		gTextTexture.loadFromRenderedText(gFont, characterSet[curr_hover]->getName(), textColor);
 		gTextTexture.render(100 + AVATAR_WIDTH, (SCREEN_HEIGHT - AVATAR_HEIGHT) - 25);
 
 		gTextTexture.free();
@@ -331,7 +355,7 @@ void SelectScreen::getButtonFunction()
 	int x = 0;
 	int h_offset = 50;
 	int w_offset = 150;
-	enum { WOW = 0, DIABLO = 1, WH = 2, SC = 4 };
+	enum { WOW = 0, DIABLO = 1, WH = 2, SC = 4, YGO = 5 };
 	while (x < TOTAL_MONSTER_SPRITES)
 	{
 		for (int j = 0; j < (SCREEN_HEIGHT / TILE_HEIGHT); j++)
@@ -347,7 +371,7 @@ void SelectScreen::getButtonFunction()
 				characterSet[x] = temp;
 				x++;
 			}
-			if (j == DIABLO || j == WH || j == SC)
+			if (j == DIABLO || j == WH || j == SC || j == YGO)
 			{
 				h_offset += 60;
 			}

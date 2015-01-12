@@ -85,7 +85,7 @@ void Button::render(int i)
 		textColor = { 164, 164, 164 };
 	}
 
-	gTextTexture.loadFromRenderedText(buttonName, textColor);
+	gTextTexture.loadFromRenderedText(gFont, buttonName, textColor);
 	gTextTexture.render(mBox.x + mBox.w / 4, mBox.y + mBox.h / 4);
 
 	gTextTexture.free();

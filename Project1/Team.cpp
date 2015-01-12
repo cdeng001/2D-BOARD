@@ -231,6 +231,38 @@ void Team::addMonster(int i, int x, int y)
 			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Zagara", i);
 			team[cur_capacity] = temp;
 			break;
+		case Thestalos:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Thestalos", i);
+			team[cur_capacity] = temp;
+			break;
+		case Mobius:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Mobius", i);
+			team[cur_capacity] = temp;
+			break;
+		case Granmarg:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Granmarg", i);
+			team[cur_capacity] = temp;
+			break;
+		case Zaborg:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Zaborg", i);
+			team[cur_capacity] = temp;
+			break;
+		case Raiza:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Raiza", i);
+			team[cur_capacity] = temp;
+			break;
+		case Caius:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Caius", i);
+			team[cur_capacity] = temp;
+			break;
+		case Dark_Magician:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Dark Magician", i);
+			team[cur_capacity] = temp;
+			break;
+		case Blue_Eyes:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Blue-Eyes White Dragon", i);
+			team[cur_capacity] = temp;
+			break;
 		default:
 			break;
 		}

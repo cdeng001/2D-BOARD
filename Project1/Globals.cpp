@@ -1,5 +1,6 @@
 #include "Globals.h"
 
+
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
 
@@ -8,6 +9,7 @@ SDL_Renderer* gRenderer = NULL;
 
 //Mouse location
 int mouse_x, mouse_y;
+int scrolling_offset = 0;
 
 //Scene textures
 LTexture gDotTexture;
@@ -22,6 +24,7 @@ LTexture gMenuBackground;
 LTexture gScrollingBG;
 LTexture gSelectOverlay;
 LTexture gSelectWindow;
+LTexture gStartTexture;
 
 //Clip arrays
 SDL_Rect gTileClips[TOTAL_TILE_SPRITES];
@@ -41,6 +44,7 @@ SDL_Rect speedBlock;
 //render font
 TTF_Font* gFont = NULL;
 TTF_Font* gFontSmall = NULL;
+TTF_Font* gFontPhase = NULL;
 
 //create team of monsters
 Team team1;
@@ -220,6 +224,12 @@ bool loadMedia(Tile* tiles[])
 		success = false;
 	}
 
+	if (!gStartTexture.loadFromFile("image/START.png"))
+	{
+		printf("Failed to load menu image!\n");
+		success = false;
+	}
+
 	if (!gSelectOverlay.loadFromFile("image/select_overlay.png"))
 	{
 		printf("Failed to load select overlay!\n");
@@ -240,14 +250,20 @@ bool loadMedia(Tile* tiles[])
 	}
 
 	//Open the font
-	gFont = TTF_OpenFont("Prototype.ttf", FONT_SIZE);
+	gFont = TTF_OpenFont("font/Prototype.ttf", FONT_SIZE);
 	if (gFont == NULL)
 	{
 		printf("Failed to load font! SDL_ttf Error: %s\n", TTF_GetError());
 		success = false;
 	}
 
-	gFontSmall = TTF_OpenFont("Prototype.ttf", FONT_SIZE - 6);
+	gFontSmall = TTF_OpenFont("font/Prototype.ttf", FONT_SIZE - 6);
+	if (gFontSmall == NULL)
+	{
+		printf("Failed to load small font! SDL_ttf Error: %s\n", TTF_GetError());
+		success = false;
+	}
+	gFontPhase = TTF_OpenFont("font/Blox2.ttf", FONT_SIZE * 3);
 	if (gFontSmall == NULL)
 	{
 		printf("Failed to load small font! SDL_ttf Error: %s\n", TTF_GetError());
@@ -300,13 +316,24 @@ void close(Tile* tiles[])
 	gScrollingBG.free();
 	gSelectOverlay.free();
 	gSelectWindow.free();
+	gStartTexture.free();
 
 	//Free global font
 	TTF_CloseFont(gFont);
 	gFont = NULL;
+	TTF_CloseFont(gFontPhase);
+	gFontPhase = NULL;
+	TTF_CloseFont(gFontSmall);
+	gFontSmall = NULL;
 
 	Mix_FreeChunk(gDiablo_Select);
 	gDiablo_Select = NULL;
+	Mix_FreeChunk(gMalthael_Select);
+	gMalthael_Select = NULL;
+	Mix_FreeChunk(gMephisto_Select);
+	gMephisto_Select = NULL;
+	Mix_FreeChunk(gBaal_Select);
+	gBaal_Select = NULL;
 
 	//Destroy window	
 	SDL_DestroyRenderer(gRenderer);
@@ -572,6 +599,15 @@ bool checkCollision(SDL_Rect a, SDL_Rect b)
 	clipTarget(gMonsterClips, Sarah_Kerrigan, 240, 200, TILE_WIDTH, TILE_HEIGHT);
 	clipTarget(gMonsterClips, Zagara, 280, 200, TILE_WIDTH, TILE_HEIGHT);
 
+	clipTarget(gMonsterClips, Thestalos, 0, 240, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Mobius, 40, 240, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Granmarg, 80, 240, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Zaborg, 120, 240, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Raiza, 160, 240, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Caius, 200, 240, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Dark_Magician, 240, 240, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Blue_Eyes, 280, 240, TILE_WIDTH, TILE_HEIGHT);
+
 	return true;
 }
 /**/
@@ -627,6 +663,15 @@ bool checkCollision(SDL_Rect a, SDL_Rect b)
 	clipTarget(gAvatarClips, Tassadar, 500, 500, AVATAR_WIDTH, AVATAR_HEIGHT);
 	clipTarget(gAvatarClips, Sarah_Kerrigan, 600, 500, AVATAR_WIDTH, AVATAR_HEIGHT);
 	clipTarget(gAvatarClips, Zagara, 700, 500, AVATAR_WIDTH, AVATAR_HEIGHT);
+
+	clipTarget(gAvatarClips, Thestalos, 0, 600, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Mobius, 100, 600, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Granmarg, 200, 600, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Zaborg, 300, 600, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Raiza, 400, 600, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Caius, 500, 600, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Dark_Magician, 600, 600, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Blue_Eyes, 700, 600, AVATAR_WIDTH, AVATAR_HEIGHT);
 }
 /**/
 /**/void clipStatTemp()
@@ -849,7 +894,7 @@ void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, S
 							{
 								ss.addList(i);
 							}
-							team2.addMonster(ss.getButton(i)->getType(), (SCREEN_WIDTH / TILE_WIDTH) - 1, team2.getCurr());
+							team2.addMonster(ss.getButton(i)->getType(), (LEVEL_WIDTH / TILE_WIDTH) - 1, team2.getCurr());
 						}
 
 					}
@@ -893,7 +938,6 @@ void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hov
 	//initialize rectangle to represent sub-screen
 	bool mouseOverMonster = false;
 	//determine location and dimension of sub-screen
-
 
 	if (gameState < MENU_SCREEN)
 	{
@@ -965,7 +1009,7 @@ void mouseWheelHandle(SDL_Event e, SDL_Rect &window_screen, SelectScreen &ss)
 		window_screen.y -= 1;
 		if (window_screen.y < 0)
 		{
-			window_screen.y = 0;
+			window_screen.y += 1;
 			return;
 		}
 		for (int i = 0; i < TOTAL_MONSTER_SPRITES; i++)
@@ -977,9 +1021,9 @@ void mouseWheelHandle(SDL_Event e, SDL_Rect &window_screen, SelectScreen &ss)
 	else
 	{
 		window_screen.y += 1;
-		if (window_screen.y > gSelectWindow.getHeight() - 1)
+		if (window_screen.y > gSelectWindow.getHeight() - SELECT_WINDOW_HEIGHT)
 		{
-			window_screen.y = gSelectWindow.getHeight() - 1;
+			window_screen.y -= 1;
 			return;
 		}
 		for (int i = 0; i < TOTAL_MONSTER_SPRITES; i++)
@@ -1127,4 +1171,17 @@ void readGameState(int gameState, Monster* &target, Tile* tile[], SDL_Rect &came
 			target->showRange(tile, camera);
 		}
 	}
+}
+
+void transitionAnimate(int scrolling_offset, bool &start)
+{
+	if (scrolling_offset >= gStartTexture.getWidth())
+	{
+		start = true;
+		int start = SDL_GetTicks();
+		while (SDL_GetTicks() - start < 1000){}
+		return;
+	}
+	gStartTexture.render(-gStartTexture.getWidth() + scrolling_offset, 0);
+
 }

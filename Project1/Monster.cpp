@@ -171,19 +171,19 @@ void Monster::displayMenu()
 
 	//place stat values
 	std::string healthDisplay = std::to_string(current_health) + " / " + std::to_string(health);
-	gTextTexture.loadFromRenderedText(healthDisplay, textColor);
+	gTextTexture.loadFromRenderedText(gFont, healthDisplay, textColor);
 	gTextTexture.render(healthBlock.x + 50, healthBlock.y);
 
 	std::string attackDisplay = std::to_string(attack);
-	gTextTexture.loadFromRenderedText(attackDisplay, textColor);
+	gTextTexture.loadFromRenderedText(gFont, attackDisplay, textColor);
 	gTextTexture.render(attackBlock.x + 50, attackBlock.y);
 
 	std::string rangeDisplay = std::to_string(range);
-	gTextTexture.loadFromRenderedText(rangeDisplay, textColor);
+	gTextTexture.loadFromRenderedText(gFont, rangeDisplay, textColor);
 	gTextTexture.render(rangeBlock.x + 50, rangeBlock.y);
 
 	std::string speedDisplay = std::to_string(speed);
-	gTextTexture.loadFromRenderedText(speedDisplay, textColor);
+	gTextTexture.loadFromRenderedText(gFont, speedDisplay, textColor);
 	gTextTexture.render(speedBlock.x + 50, speedBlock.y);
 
 	gTextTexture.free();
@@ -277,12 +277,10 @@ bool Monster::moveUnit(int x, int y)
 	return success;
 }
 
-void Monster::renderAt(SDL_Rect& camera, int x, int y)
+void Monster::renderAt( int a, int b)
 {
-	//If the tile is on screen
-	if (checkCollision(camera, mBox))
-	{
+	
 		//Show the tile
-		gMonsterTexture.render(x, y, &gMonsterClips[mType]);
-	}
+		gMonsterTexture.render(a, b, &gMonsterClips[mType]);
+	
 }

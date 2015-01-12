@@ -11,7 +11,7 @@ public:
 	Monster();
 	virtual ~Monster();
 	virtual void render(SDL_Rect& camera);
-	void renderAt(SDL_Rect& camera, int x, int y);
+	void renderAt( int a, int b);
 	
 
 	virtual int get_health();

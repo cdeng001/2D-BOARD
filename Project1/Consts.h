@@ -15,7 +15,7 @@ const int SELECT_WINDOW_WIDTH = SCREEN_WIDTH - 200;
 const int SELECT_WINDOW_HEIGHT = 400;
 
 //The dimensions of the level
-const int LEVEL_WIDTH = 1280 / 2;
+const int LEVEL_WIDTH = 1280 ;
 const int LEVEL_HEIGHT = 960 ;
 
 //Tile constants
@@ -113,6 +113,16 @@ enum {
 	Sarah_Kerrigan,
 	Zagara,
 
+	//Yu-gi-oh
+	Thestalos,
+	Mobius,
+	Granmarg,
+	Zaborg,
+	Raiza, 
+	Caius,
+	Dark_Magician,
+	Blue_Eyes,
+
 	TOTAL_MONSTER_SPRITES
 };
 
@@ -189,4 +199,23 @@ enum button_name{
 	SELECT_BUTTON,
 
 	TOTAL_BUTTONS
+};
+
+const int PLAYER1_TURN = 0;
+const int PLAYER2_TURN = 1;
+
+//game phases
+enum{
+	AI_PHASE1,
+	PLAYER1_STANDBY,
+	PLAYER1_MOVEMENT,
+	PLAYER1_BATTLE,
+	PLAYER1_END,
+	AI_PHASE2,
+	PLAYER2_STANDBY,
+	PLAYER2_MOVEMENT,
+	PLAYER2_BATTLE,
+	PLAYER2_END,
+
+	TOTAL_PHASES
 };
