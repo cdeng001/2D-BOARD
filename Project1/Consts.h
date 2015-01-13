@@ -181,8 +181,8 @@ const int HIGHLIGHT_MAGIC_TARGET = 9;
 
 //game states
 const int IDLE = 0;
-const int MOVEMENT = 1;
-const int BATTLE = 2;
+//const int MOVEMENT = 1;
+//const int BATTLE = 2;
 const int MENU_SCREEN = 3;
 const int PAUSE_SCREEN = 4;
 const int CHARACTER_SELECTION = 5;
@@ -205,21 +205,17 @@ enum button_name{
 	TOTAL_BUTTONS
 };
 
-const int PLAYER1_TURN = 0;
-const int PLAYER2_TURN = 1;
-
 //game phases
-enum{
-	AI_PHASE1,
-	PLAYER1_STANDBY,
-	PLAYER1_MOVEMENT,
-	PLAYER1_BATTLE,
-	PLAYER1_END,
-	AI_PHASE2,
-	PLAYER2_STANDBY,
-	PLAYER2_MOVEMENT,
-	PLAYER2_BATTLE,
-	PLAYER2_END,
 
-	TOTAL_PHASES
-};
+const int AI_PHASE1 = 0;
+const int PLAYER1_STANDBY = 1;
+const int PLAYER1_MOVEMENT = 2;
+const int PLAYER1_BATTLE = 3;
+const int PLAYER1_END = 4;
+const int AI_PHASE2 = 5;
+const int PLAYER2_STANDBY = 6;
+const int PLAYER2_MOVEMENT = 7;
+const int PLAYER2_BATTLE = 8;
+const int PLAYER2_END = 9;
+
+const int TOTAL_PHASES = 10;

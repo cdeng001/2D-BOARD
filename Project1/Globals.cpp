@@ -809,29 +809,29 @@ void getTaunt(int i)
 	}
 }
 
-void checkClickMonster(int x, int y, Monster* &target, int gameState)
+void checkClickMonster(int x, int y, Monster* &target, int gameState, int p)
 {
-	if (gameState == IDLE)
+	if (p != PLAYER1_END && p != PLAYER2_END && p != AI_PHASE1 && p != AI_PHASE2)
 	{
 		for (int i = 0; i < TEAM_SIZE; i++)
 		{
 			if (team1.getMonster(i)->checkClick(x, y))
 			{
-				if (!(team1.getMonster(i)->checkDead()))
+				if (!(team1.getMonster(i)->checkDead()) && p == PLAYER1_STANDBY)
 				{
 					target = team1.getMonster(i);
 				}
 			}
 			if (team2.getMonster(i)->checkClick(x, y))
 			{
-				if (!(team2.getMonster(i)->checkDead()))
+				if (!(team2.getMonster(i)->checkDead()) && p == PLAYER2_STANDBY)
 				{
 					target = team2.getMonster(i);
 				}
 			}
 		}
 	}
-	else if (gameState == BATTLE)
+	if (p == PLAYER1_BATTLE || p == PLAYER2_BATTLE)
 	{
 		for (int i = 0; i < TEAM_SIZE; i++)
 		{
@@ -839,17 +839,17 @@ void checkClickMonster(int x, int y, Monster* &target, int gameState)
 			{
 				if (team1.getMonster(i)->checkClick(x, y))
 				{
-					if (team1.getMonster(i)->checkInRange(target, gameState))
+					if ((team1.getMonster(i)->checkInRange(target, p)) && p == PLAYER2_BATTLE )
 					{
-						//target->doDamageTo(team1.getMonster(i));
+						std::cout << i << std::endl;
 						team1.damageMonster(i, target);
 					}
 				}
 				if (team2.getMonster(i)->checkClick(x, y))
 				{
-					if (team2.getMonster(i)->checkInRange(target, gameState))
+					if ((team2.getMonster(i)->checkInRange(target, p)) && p == PLAYER1_BATTLE )
 					{
-						//target->doDamageTo(team2.getMonster(i));
+						std::cout << i << std::endl;
 						team2.damageMonster(i, target);
 					}
 				}
@@ -860,8 +860,9 @@ void checkClickMonster(int x, int y, Monster* &target, int gameState)
 	return;
 }
 
-void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss)
+void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss, int p, SDL_Rect win)
 {
+	//deal with turn player
 	if (e.button.button == SDL_BUTTON_LEFT)
 	{
 		if (gameState == MENU_SCREEN)
@@ -876,7 +877,7 @@ void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, S
 		{
 			for (int i = 0; i < TOTAL_MONSTER_SPRITES; i++)
 			{
-				if ((ss.getButton(i))->checkClick(mouse_x, mouse_y))
+				if ((ss.getButton(i))->checkClick(mouse_x, mouse_y, win))
 				{
 					if (!(ss.checkList(i)))
 					{
@@ -919,22 +920,33 @@ void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, S
 			{
 				if (tiles[i]->checkClick(mouse_x, mouse_y))
 				{
-					if (gameState == IDLE)
+					if (p == PLAYER1_STANDBY || p == PLAYER2_STANDBY)
 					{
 						target = NULL;
 					}
-					else if (gameState == MOVEMENT)
+					else if (p == PLAYER1_MOVEMENT || p == PLAYER2_MOVEMENT)
 					{
-						target->moveUnit(tiles[i]->getCol(), tiles[i]->getRow());
+						for (int j = 0; j < TEAM_SIZE; j++)
+						{
+							if ((p == PLAYER1_MOVEMENT) && (team1.getMonster(j) == target))
+							{
+								target->moveUnit(tiles[i]->getCol(), tiles[i]->getRow());
+							}
+							else if ((p == PLAYER2_MOVEMENT) && (team2.getMonster(j) == target))
+							{
+								target->moveUnit(tiles[i]->getCol(), tiles[i]->getRow());
+							}
+						}
+						
 					}
 				}
 			}
-			checkClickMonster(mouse_x, mouse_y, target, gameState);
+			checkClickMonster(mouse_x, mouse_y, target, gameState, p);
 		}
 	}
 }
 
-void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hover, int gameState, SelectScreen &ss)
+void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hover, int gameState, SelectScreen &ss, SDL_Rect win)
 {
 	//initialize rectangle to represent sub-screen
 	bool mouseOverMonster = false;
@@ -987,7 +999,7 @@ void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hov
 		bool foundHover = false;
 		for (int i = 0; i < TOTAL_MONSTER_SPRITES; i++)
 		{
-			if (ss.getButton(i)->checkClick(mouse_x, mouse_y))
+			if (ss.getButton(i)->checkClick(mouse_x, mouse_y, win))
 			{
 				ss.setHover(i);
 				foundHover = true;
@@ -1035,29 +1047,19 @@ void mouseWheelHandle(SDL_Event e, SDL_Rect &window_screen, SelectScreen &ss)
 	}
 }
 
-void keyBoardHandle(SDL_Event e, Tile* tiles[], SDL_Rect &camera, Monster* &target, int &gameState, SelectScreen &ss)
+void keyBoardHandle(SDL_Event e, Tile* tiles[], SDL_Rect &camera, Monster* &target, int &gameState, SelectScreen &ss, int &p)
 {
 	switch (e.key.keysym.sym)
 	{
 	case '1':
-		if (gameState == MOVEMENT)
+		p = p + 1;
+		if (p == TOTAL_PHASES)
 		{
-			gameState = IDLE;
+			p = 0;
 		}
-		else if (target != NULL)
-		{
-			gameState = MOVEMENT;
-		}
+		std::cout << p << std::endl;
 		break;
 	case '2':
-		if (gameState == BATTLE)
-		{
-			gameState = IDLE;
-		}
-		else if (target != NULL)
-		{
-			gameState = BATTLE;
-		}
 		break;
 	case SDLK_SPACE:
 		if (gameState == CHARACTER_SELECTION)
@@ -1156,16 +1158,16 @@ void displayBlank()
 	//std::cout << gLowerSubscreen.getHeight() << "," << gLowerSubscreen.getWidth() << std::endl;
 }
 
-void readGameState(int gameState, Monster* &target, Tile* tile[], SDL_Rect &camera)
+void readGameState(int p, Monster* &target, Tile* tile[], SDL_Rect &camera)
 {
-	if (gameState == MOVEMENT)
+	if (p == PLAYER1_MOVEMENT || p == PLAYER2_MOVEMENT)
 	{
 		if (target != NULL)
 		{
 			target->showSpeed(tile, camera, HIGHLIGHT_RANGE_MOVEMENT);
 		}
 	}
-	else if (gameState == BATTLE)
+	else if (p == PLAYER1_BATTLE || p == PLAYER2_BATTLE)
 	{
 		if (target != NULL)
 		{

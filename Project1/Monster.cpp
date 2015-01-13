@@ -261,14 +261,14 @@ bool Monster::checkInRange(Monster* target, int r)
 	}
 
 	int check = abs(target->getCol() - (col)) + abs(target->getRow() - (row));
-	if (r = MOVEMENT)
+	if (r == PLAYER1_MOVEMENT || r == PLAYER2_MOVEMENT)
 	{
 		if (check <= target->speed)
 		{
 			inRange = true;
 		}
 	}
-	else if (r = BATTLE)
+	else if (r == PLAYER1_BATTLE || r == PLAYER2_BATTLE)
 	{
 		if (check <= target->range)
 		{

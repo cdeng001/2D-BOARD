@@ -49,15 +49,15 @@ bool checkCollision(SDL_Rect a, SDL_Rect b);
 
 void getTaunt(int i);
 
-void checkClickMonster(int x, int y, Monster* &target, int gameState);
+void checkClickMonster(int x, int y, Monster* &target, int gameState, int p);
 
-void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss);
+void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss, int p, SDL_Rect win);
 
-void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hover, int gameState, SelectScreen &ss);
+void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hover, int gameState, SelectScreen &ss, SDL_Rect win);
 
 void mouseWheelHandle(SDL_Event e, SDL_Rect &window_screen, SelectScreen &ss);
 
-void keyBoardHandle(SDL_Event e, Tile* tiles[], SDL_Rect &camera, Monster* &target, int &gameState, SelectScreen &ss);
+void keyBoardHandle(SDL_Event e, Tile* tiles[], SDL_Rect &camera, Monster* &target, int &gameState, SelectScreen &ss, int &p);
 
 bool touchesWall(SDL_Rect box, Tile* tiles[]);
 
@@ -70,7 +70,7 @@ void populateIcon(Icon* iconSet[]);
 
 void displayBlank();
 
-void readGameState(int gameState, Monster* &target, Tile* tile[], SDL_Rect &camera);
+void readGameState(int p, Monster* &target, Tile* tile[], SDL_Rect &camera);
 
 void transitionAnimate(int scrolling_offset, bool &start);
 

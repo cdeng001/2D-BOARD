@@ -17,6 +17,7 @@ public:
 	void setSize(int w, int h);
 	virtual bool checkClick(int x, int y, int &gameState);
 	virtual bool checkClick(int x, int y);
+	virtual bool checkClick(int x, int y, SDL_Rect camera);
 	void setActionFunction(void(*functPtr)(int &gameState));
 	
 	void setName(const std::string &name);

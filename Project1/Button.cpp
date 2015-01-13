@@ -103,3 +103,12 @@ void Button::render(SDL_Rect camera, int y)
 		gMonsterTexture.render(mBox.x - camera.x, y, &gMonsterClips[mType]);
 	}
 }
+
+bool Button::checkClick(int x, int y, SDL_Rect camera)
+{
+	if (x < camera.x || y < camera.y || y > camera.x + camera.w || y > camera.y + camera.h)
+	{
+		return false;
+	}
+	return Tile::checkClick(x, y);
+}

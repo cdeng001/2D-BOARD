@@ -61,10 +61,9 @@ int main(int argc, char* args[])
 			//The dot that will be moving around on the screen
 			Dot dot;
 			int gameState = MENU_SCREEN;
-			int turnPlayer = 0;
+			int p;
 			Monster* target = NULL;
 			Monster* hover = NULL;
-			Team* turnPlayer = NULL;
 
 			//Level camera
 			SDL_Rect camera = { 0, 0, SUBSCREEN_WIDTH, SUBSCREEN_HEIGHT };
@@ -94,7 +93,7 @@ int main(int argc, char* args[])
 
 					if (e.type == SDL_MOUSEBUTTONDOWN)
 					{
-						mouseHandle(e, tileSet, target, gameState, selectMenu);
+						mouseHandle(e, tileSet, target, gameState, selectMenu, p, select_window);
 					}
 
 					if (e.type == SDL_MOUSEWHEEL)
@@ -104,7 +103,7 @@ int main(int argc, char* args[])
 
 					if (e.type == SDL_KEYDOWN)
 					{
-						keyBoardHandle(e, tileSet, camera, target, gameState, selectMenu);
+						keyBoardHandle(e, tileSet, camera, target, gameState, selectMenu, p);
 					}
 
 					//Handle input for the dot
@@ -133,6 +132,11 @@ int main(int argc, char* args[])
 				}
 				else
 				{
+					if (!gameStart)
+					{
+						p = PLAYER1_STANDBY;
+					}
+
 					//Move the dot
 					dot.move(tileSet);
 					dot.setCamera(camera, mouse_x, mouse_y);
@@ -147,56 +151,64 @@ int main(int argc, char* args[])
 						tileSet[i]->render(camera);
 					}
 
-					readGameState(gameState, target, tileSet, camera);
+					readGameState(p, target, tileSet, camera);
 
 					for (int i = 0; i < TEAM_SIZE; ++i)
 					{
 						team1.getMonster(i)->render(camera);
 						team2.getMonster(i)->render(camera);
-						if (gameState != IDLE)
+						if (gameState == IDLE)
 						{
-							if (gameState == MOVEMENT)
+							if (p == PLAYER1_MOVEMENT||p == PLAYER2_MOVEMENT)
 							{
-								if (team1.getMonster(i)->checkInRange(target, MOVEMENT))
+								if (team1.getMonster(i)->checkInRange(target, p)) 
 								{
 									team1.getMonster(i)->highlightTile(HIGHLIGHT_NOT_PASSABLE, camera);
 								}
-								if (team2.getMonster(i)->checkInRange(target, MOVEMENT))
+								if (team2.getMonster(i)->checkInRange(target, p))
 								{
 									team2.getMonster(i)->highlightTile(HIGHLIGHT_NOT_PASSABLE, camera);
 								}
 							}
-							else if (gameState == BATTLE)
+							else if (p == PLAYER1_BATTLE || p == PLAYER2_BATTLE)
 							{
-								if (team1.getMonster(i)->checkInRange(target, BATTLE))
+								if ((team1.getMonster(i)->checkInRange(target, p)))
 								{
-									if (target->get_damageType() == MELEE_DAMAGE_TYPE)
+									if (p == PLAYER2_BATTLE)
 									{
-										team1.getMonster(i)->highlightTile(HIGHLIGHT_MELEE_TARGET, camera);
+										if (target->get_damageType() == MELEE_DAMAGE_TYPE)
+										{
+											team1.getMonster(i)->highlightTile(HIGHLIGHT_MELEE_TARGET, camera);
+										}
+										else if (target->get_damageType() == RANGED_DAMAGE_TYPE)
+										{
+											team1.getMonster(i)->highlightTile(HIGHLIGHT_RANGED_TARGET, camera);
+										}
+										else
+										{
+											team1.getMonster(i)->highlightTile(HIGHLIGHT_MAGIC_TARGET, camera);
+										}
 									}
-									else if (target->get_damageType() == RANGED_DAMAGE_TYPE)
-									{
-										team1.getMonster(i)->highlightTile(HIGHLIGHT_RANGED_TARGET, camera);
-									}
-									else
-									{
-										team1.getMonster(i)->highlightTile(HIGHLIGHT_MAGIC_TARGET, camera);
-									}
+									team1.getMonster(i)->highlightTile(HIGHLIGHT_NOT_PASSABLE, camera);
 								}
-								if (team2.getMonster(i)->checkInRange(target, BATTLE))
+								if ((team2.getMonster(i)->checkInRange(target, p)))
 								{
-									if (target->get_damageType() == MELEE_DAMAGE_TYPE)
+									if (p == PLAYER1_BATTLE)
 									{
-										team2.getMonster(i)->highlightTile(HIGHLIGHT_MELEE_TARGET, camera);
+										if (target->get_damageType() == MELEE_DAMAGE_TYPE)
+										{
+											team2.getMonster(i)->highlightTile(HIGHLIGHT_MELEE_TARGET, camera);
+										}
+										else if (target->get_damageType() == RANGED_DAMAGE_TYPE)
+										{
+											team2.getMonster(i)->highlightTile(HIGHLIGHT_RANGED_TARGET, camera);
+										}
+										else
+										{
+											team2.getMonster(i)->highlightTile(HIGHLIGHT_MAGIC_TARGET, camera);
+										}
 									}
-									else if (target->get_damageType() == RANGED_DAMAGE_TYPE)
-									{
-										team2.getMonster(i)->highlightTile(HIGHLIGHT_RANGED_TARGET, camera);
-									}
-									else
-									{
-										team2.getMonster(i)->highlightTile(HIGHLIGHT_MAGIC_TARGET, camera);
-									}
+									team1.getMonster(i)->highlightTile(HIGHLIGHT_NOT_PASSABLE, camera);
 								}
 							}
 						}
@@ -248,7 +260,8 @@ int main(int argc, char* args[])
 					}
 				}
 				
-				mouseMotion(tileSet, camera, target, hover, gameState, selectMenu);
+				mouseMotion(tileSet, camera, target, hover, gameState, selectMenu, select_window);
+
 				//Update screen
 				SDL_RenderPresent(gRenderer);
 			}
