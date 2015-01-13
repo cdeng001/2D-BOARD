@@ -1,6 +1,5 @@
 #include "Globals.h"
 
-
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
 
@@ -40,6 +39,7 @@ SDL_Rect attackBlock;
 SDL_Rect healthBlock;
 SDL_Rect rangeBlock;
 SDL_Rect speedBlock;
+SDL_Rect manaBlock;
 
 //render font
 TTF_Font* gFont = NULL;
@@ -680,6 +680,7 @@ bool checkCollision(SDL_Rect a, SDL_Rect b)
 	clipTarget(gStatClips, HEALTH, 0, 24, 200, 24);
 	clipTarget(gStatClips, RANGE, 0, 48, 200, 24);
 	clipTarget(gStatClips, SPEED, 0, 72, 200, 24);
+	clipTarget(gStatClips, MANA, 0, 96, 200, 24);
 }
 /**/
 /**/void clipOverlays()
@@ -976,7 +977,7 @@ void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hov
 			{
 				if (i == target->get_damageType())
 				{
-					iconSet[i]->showHoverText(mouse_x, mouse_y);
+					iconSet[i]->showHoverText(mouse_x - camera.x, mouse_y - camera.y);
 				}
 			}
 		}
@@ -1108,13 +1109,13 @@ void populateStatLoc()
 	int standard_x = 40 + AVATAR_WIDTH;
 	int standard_w = 200;
 
-	nameBlock.x = standard_x;
-	nameBlock.y = getY(1);
-	nameBlock.w = standard_w;
-	nameBlock.h = FONT_SIZE;
+	manaBlock.x = standard_x;
+	manaBlock.y = getY(2);
+	manaBlock.w = standard_w;
+	manaBlock.h = FONT_SIZE;
 
 	healthBlock.x = standard_x;
-	healthBlock.y = getY(2);
+	healthBlock.y = getY(1);
 	healthBlock.w = standard_w;
 	healthBlock.h = FONT_SIZE;
 

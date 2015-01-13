@@ -113,6 +113,7 @@ extern SDL_Rect attackBlock;
 extern SDL_Rect healthBlock;
 extern SDL_Rect rangeBlock;
 extern SDL_Rect speedBlock;
+extern SDL_Rect manaBlock;
 
 //render font
 extern TTF_Font* gFont;

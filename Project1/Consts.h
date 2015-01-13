@@ -14,6 +14,9 @@ const int LOWER_SCREEN_HEIGHT = SCREEN_HEIGHT - SUBSCREEN_HEIGHT;
 const int SELECT_WINDOW_WIDTH = SCREEN_WIDTH - 200;
 const int SELECT_WINDOW_HEIGHT = 400;
 
+const int BAR_LENGTH = 200 - 24;
+const int MAX_FRAMES = 30;
+
 //The dimensions of the level
 const int LEVEL_WIDTH = 1280 ;
 const int LEVEL_HEIGHT = 960 ;
@@ -31,12 +34,13 @@ const int AVATAR_HEIGHT = 100;
 
 const int TEAM_SIZE = 6;
 
-const int TOTAL_STATS = 5;
+const int TOTAL_STATS = 6;
 const int HEALTH = 0;
 const int ATTACK = 1;
 const int RANGE = 2;
 const int SPEED = 3;
-const int NAME = 4;
+const int MANA = 4;
+const int NAME = 5;
 
 //Font stuff
 const int FONT_SIZE = 18;

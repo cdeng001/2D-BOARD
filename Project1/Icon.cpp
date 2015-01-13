@@ -94,7 +94,7 @@ void Icon::showHoverText(int mouse_x, int mouse_y)
 		SDL_Rect nBox;
 		TTF_SizeText(gFont, onHoverText.c_str(), &nBox.w, &nBox.h);
 		nBox.x = mouse_x + nBox.w / 2;
-		nBox.y = mouse_y;
+		nBox.y = mouse_y ;
 		nBox.w += 5;
 		SDL_RenderFillRect(gRenderer, &nBox);
 

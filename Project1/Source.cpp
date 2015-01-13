@@ -21,6 +21,7 @@
 #include "SelectScreen.h"
 #include "Team.h"
 #include "Globals.h"
+#include "ImageAnimate.h"
 
 int main(int argc, char* args[])
 {
@@ -63,6 +64,7 @@ int main(int argc, char* args[])
 			int turnPlayer = 0;
 			Monster* target = NULL;
 			Monster* hover = NULL;
+			Team* turnPlayer = NULL;
 
 			//Level camera
 			SDL_Rect camera = { 0, 0, SUBSCREEN_WIDTH, SUBSCREEN_HEIGHT };

@@ -7,14 +7,14 @@
 
 
 Monster::Monster():
-Tile(0, 0, 0), health(0), attack(0), speed(0), range(0), damageType(0), weakness(0), current_health(0)
+Tile(0, 0, 0), health(0), attack(0), speed(0), range(0), damageType(0), weakness(0), current_health(0), mana(0), current_mana(0)
 {
 	first = " ";
 	last = " ";
 }
 
 Monster::Monster(int x, int y, int h, int a, int s, int r, int dT, int w, std::string n, int type):
-Tile(x, y, type), health(h), attack(a), speed(s), range(r), damageType(dT), weakness(w), current_health(h)
+Tile(x, y, type), health(h), attack(a), speed(s), range(r), damageType(dT), weakness(w), current_health(h), mana(10), current_mana(10)
 {
 	first = n.substr(0, n.find(' '));
 	if (n.find(' ') != -1)
@@ -106,18 +106,20 @@ bool Monster::showSpeed(Tile* tile[], SDL_Rect& camera, int name)
 
 void Monster::doDamageTo(Monster* enemy)
 {
-	if (!(enemy->checkDead()))
+	if (current_mana > 0)
 	{
-		int newHealth = enemy->current_health - attack;
-		if (newHealth <= 0)
+		current_mana--;
+		if (!(enemy->checkDead()))
 		{
-			enemy->current_health = 0;
-			std::cout << enemy->get_name() << " has been slain by " << this->get_name() << "." << std::endl;
-		}
-		else
-		{
-			enemy->current_health = newHealth;
-			std::cout << this->get_name() << " does " << this->get_attack() << " damage to " << enemy->get_name() << "." << std::endl;
+			int newHealth = enemy->current_health - attack;
+			if (newHealth <= 0)
+			{
+				enemy->current_health = 0;
+			}
+			else
+			{
+				enemy->current_health = newHealth;
+			}
 		}
 	}
 }
@@ -168,11 +170,44 @@ void Monster::displayMenu()
 	gStatTemplate.render(attackBlock.x, attackBlock.y, &gStatClips[ATTACK]);
 	gStatTemplate.render(rangeBlock.x, rangeBlock.y, &gStatClips[RANGE]);
 	gStatTemplate.render(speedBlock.x, speedBlock.y, &gStatClips[SPEED]);
+	gStatTemplate.render(manaBlock.x, manaBlock.y, &gStatClips[MANA]);
+
+	SDL_Color health_color = { 255, 0, 0 };
+	SDL_Color mana_color = { 0, 0, 255 };
+	SDL_Rect bar;
+	bar.x = healthBlock.x +24;
+	bar.y = healthBlock.y ;
+	bar.w = 1;
+	bar.h = 24;
+
+	float temp = BAR_LENGTH*(float(current_health) / health);
+	SDL_SetRenderDrawColor(gRenderer, health_color.r, health_color.g, health_color.b, health_color.a);
+	for (int i = 0; i < int(temp); i++)
+	{
+		SDL_RenderFillRect(gRenderer, &bar);
+		bar.x++;
+	}
+
+	bar.x = manaBlock.x +24;
+	bar.y = manaBlock.y ;
+	bar.w = 1;
+	bar.h = 24;
+	temp = (BAR_LENGTH*(float(current_mana) / mana));
+	SDL_SetRenderDrawColor(gRenderer, mana_color.r, mana_color.g, mana_color.b, mana_color.a);
+	for (int i = 0; i < int(temp); i++)
+	{
+		SDL_RenderFillRect(gRenderer, &bar);
+		bar.x++;
+	}
 
 	//place stat values
 	std::string healthDisplay = std::to_string(current_health) + " / " + std::to_string(health);
 	gTextTexture.loadFromRenderedText(gFont, healthDisplay, textColor);
 	gTextTexture.render(healthBlock.x + 50, healthBlock.y);
+
+	std::string manaDisplay = std::to_string(current_mana) + " / " + std::to_string(mana);
+	gTextTexture.loadFromRenderedText(gFont, manaDisplay, textColor);
+	gTextTexture.render(manaBlock.x + 50, manaBlock.y);
 
 	std::string attackDisplay = std::to_string(attack);
 	gTextTexture.loadFromRenderedText(gFont, attackDisplay, textColor);
