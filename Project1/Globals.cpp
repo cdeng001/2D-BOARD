@@ -32,6 +32,7 @@ SDL_Rect gAvatarClips[TOTAL_MONSTER_SPRITES];
 SDL_Rect gStatClips[TOTAL_STATS];
 SDL_Rect gOverlays[TOTAL_OVERLAYS];
 SDL_Rect gButtonClips[TOTAL_BUTTONS];
+SDL_Rect gPhaseClips[8];
 
 //stat menu rects
 SDL_Rect nameBlock;
@@ -90,7 +91,7 @@ bool init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("Big Boy Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -270,6 +271,11 @@ bool loadMedia(Tile* tiles[])
 		success = false;
 	}
 	setMonsters();
+	clipPhases();
+	clipAvatars();
+	clipStatTemp();
+	clipOverlays();
+	clipButtons();
 	loadMusic();
 	return success;
 }
@@ -745,6 +751,26 @@ bool checkCollision(SDL_Rect a, SDL_Rect b)
 {
 	clipTarget(gButtonClips, UP_BUTTON, 0, 0, BUTTON_WIDTH, BUTTON_HEIGHT);
 	clipTarget(gButtonClips, HOVER_BUTTON, BUTTON_WIDTH + 1, 0, BUTTON_WIDTH, BUTTON_HEIGHT);
+
+	int size = 27;
+	clipTarget(gButtonClips, BLUE_1, 27 * 0, 73, size, size);
+	clipTarget(gButtonClips, BLUE_2, 27 * 1, 73, size, size);
+	clipTarget(gButtonClips, BLUE_3, 27 * 2, 73, size, size);
+	clipTarget(gButtonClips, RED_1, 27 * 3, 73, size, size);
+	clipTarget(gButtonClips, RED_2, 27 * 4, 73, size, size);
+	clipTarget(gButtonClips, RED_3, 27 * 5, 73, size, size);
+}
+/**/
+/**/void clipPhases()
+{
+	clipTarget(gPhaseClips, 0, 60, 75, 540, 126-75);
+	clipTarget(gPhaseClips, 1, 60, 154, 540, 205-154);
+	clipTarget(gPhaseClips, 2, 60, 228, 540, 279-228);
+	clipTarget(gPhaseClips, 3, 60, 306, 540, 378-306);
+	clipTarget(gPhaseClips, 4, 60, 406, 540, 457-406);
+	clipTarget(gPhaseClips, 5, 60, 480, 540, 531-480);
+	clipTarget(gPhaseClips, 6, 60, 556, 540, 607-556);
+	clipTarget(gPhaseClips, 7, 60, 639, 540, 690-639);
 }
 //End of clipping functions
 
@@ -903,7 +929,7 @@ void checkClickMonster(int x, int y, Monster* &target, int gameState, int p)
 	return;
 }
 
-void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss, int p, SDL_Rect win)
+void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss, int &p, SDL_Rect win, Button* b[], bool &first)
 {
 	//deal with turn player
 	if (e.button.button == SDL_BUTTON_LEFT)
@@ -963,7 +989,7 @@ void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, S
 			{
 				if (tiles[i]->checkClick(mouse_x, mouse_y))
 				{
-					if (p == PLAYER1_STANDBY || p == PLAYER2_STANDBY)
+					if ((p == PLAYER1_STANDBY || p == PLAYER2_STANDBY) && (mouse_y < SUBSCREEN_HEIGHT))
 					{
 						target = NULL;
 					}
@@ -997,6 +1023,12 @@ void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, S
 					}
 				}
 			}
+			if (p == PLAYER1_STANDBY){ first = b[0]->checkClick(mouse_x, mouse_y, p); }
+			else if (p == PLAYER1_MOVEMENT){ first = b[1]->checkClick(mouse_x, mouse_y, p); }
+			else if (p == PLAYER1_BATTLE){ first = b[2]->checkClick(mouse_x, mouse_y, p); }
+			else if (p == PLAYER2_STANDBY){ first = b[3]->checkClick(mouse_x, mouse_y, p); }
+			else if (p == PLAYER2_MOVEMENT){ first = b[4]->checkClick(mouse_x, mouse_y, p); }
+			else if (p == PLAYER2_BATTLE){ first = b[5]->checkClick(mouse_x, mouse_y, p); }
 			checkClickMonster(mouse_x, mouse_y, target, gameState, p);
 		}
 	}
@@ -1113,7 +1145,6 @@ void keyBoardHandle(SDL_Event e, Tile* tiles[], SDL_Rect &camera, Monster* &targ
 		{
 			p = 0;
 		}
-		std::cout << p << std::endl;
 		break;
 	case '2':
 		break;
@@ -1210,29 +1241,30 @@ void populateButton(Button* buttons[])
 		buttons[i] = new Button;
 	}
 
+	int size = 27;
 	buttons[0]->setActionFunction(p1_move);
 	buttons[0]->setLoc(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 50);
-	buttons[0]->setSize( 50, 50);
+	buttons[0]->setSize( size, size);
 
 	buttons[1]->setActionFunction(p1_battle);
 	buttons[1]->setLoc(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 50);
-	buttons[1]->setSize(50, 50);
+	buttons[1]->setSize(size, size);
 
 	buttons[2]->setActionFunction(p1_end);
 	buttons[2]->setLoc(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 50);
-	buttons[2]->setSize(50, 50);
+	buttons[2]->setSize(size, size);
 
 	buttons[3]->setActionFunction(p2_move);
 	buttons[3]->setLoc(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 50);
-	buttons[3]->setSize(50, 50);
+	buttons[3]->setSize(size, size);
 
 	buttons[4]->setActionFunction(p2_battle);
 	buttons[4]->setLoc(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 50);
-	buttons[4]->setSize(50, 50);
+	buttons[4]->setSize(size, size);
 
 	buttons[5]->setActionFunction(p2_end);
 	buttons[5]->setLoc(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 50);
-	buttons[5]->setSize(50, 50);
+	buttons[5]->setSize(size, size);
 
 
 
@@ -1260,6 +1292,9 @@ void displayBlank(int p)
 				gStatTemplate.render(SCREEN_WIDTH - ((i + 1) * 24), 500, &gStatClips[GREY_GEM]);
 			}
 		}
+		if (p == PLAYER1_STANDBY){ gButtonTexture.render(SCREEN_HEIGHT - 50, SCREEN_WIDTH - 50, &gButtonClips[BLUE_1]); }
+		else if (p == PLAYER1_MOVEMENT){ gButtonTexture.render(SCREEN_HEIGHT - 50, SCREEN_WIDTH - 50, &gButtonClips[BLUE_2]); }
+		else if (p == PLAYER1_BATTLE){ gButtonTexture.render(SCREEN_HEIGHT - 50, SCREEN_WIDTH - 50, &gButtonClips[BLUE_3]); }
 	}
 	else
 	{
@@ -1273,6 +1308,9 @@ void displayBlank(int p)
 			{
 				gStatTemplate.render(SCREEN_WIDTH - ((i + 1) * 24), 500, &gStatClips[GREY_GEM]);
 			}
+			if (p == PLAYER2_STANDBY){ gButtonTexture.render(SCREEN_HEIGHT - 50, SCREEN_WIDTH - 50, &gButtonClips[RED_1]); }
+			else if (p == PLAYER2_MOVEMENT){ gButtonTexture.render(SCREEN_HEIGHT - 50, SCREEN_WIDTH - 50, &gButtonClips[RED_2]); }
+			else if (p == PLAYER2_BATTLE){ gButtonTexture.render(SCREEN_HEIGHT - 50, SCREEN_WIDTH - 50, &gButtonClips[RED_3]); }
 		}
 	}
 	
@@ -1316,15 +1354,15 @@ void readGameState(int p, Monster* &target, Tile* tile[], SDL_Rect &camera)
 	}
 }
 
-void transitionAnimate(int scrolling_offset, bool &start)
+void transitionAnimate(int scrolling_offset, bool &start,int i)
 {
-	if (scrolling_offset >= gStartTexture.getWidth())
+	if (scrolling_offset >= (gStartTexture.getWidth() + ((SCREEN_WIDTH / 2) - (gPhaseClips[i].w/2))))
 	{
-		start = true;
+		start = !start;
 		int start = SDL_GetTicks();
 		while (SDL_GetTicks() - start < 1000){}
 		return;
 	}
-	gStartTexture.render(-gStartTexture.getWidth() + scrolling_offset, 0);
+	gStartTexture.render(-gStartTexture.getWidth() + scrolling_offset, (SUBSCREEN_HEIGHT / 2) - (gPhaseClips[i].h / 2), &gPhaseClips[i]);
 
 }

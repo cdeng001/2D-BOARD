@@ -39,35 +39,41 @@ void changeToQuit(int &gameState)
 void p1_move(int &phase)
 {
 	phase = PLAYER1_MOVEMENT;
+	std::cout << phase << std::endl;
 	return;
 }
 
 void p1_battle(int &phase)
 {
 	phase = PLAYER1_BATTLE;
+	std::cout << phase << std::endl;
 	return;
 }
 
 void p1_end(int &phase)
 {
 	phase = PLAYER1_END;
+	std::cout << phase << std::endl;
 	return;
 }
 
 void p2_move(int &phase)
 {
 	phase = PLAYER2_MOVEMENT;
+	std::cout << phase << std::endl;
 	return;
 }
 
 void p2_battle(int &phase)
 {
 	phase = PLAYER2_BATTLE;
+	std::cout << phase << std::endl;
 	return;
 }
 
 void p2_end(int &phase)
 {
 	phase = PLAYER2_END;
+	std::cout << phase << std::endl;
 	return;
 }

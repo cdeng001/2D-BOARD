@@ -379,7 +379,7 @@ void SelectScreen::getButtonFunction()
 	int x = 0;
 	int h_offset = 50;
 	int w_offset = 150;
-	enum { WOW = 0, DIABLO = 1, WH = 2, SC = 4, YGO = 5 };
+	enum { WOW = 0, DIABLO = 1, WH = 2, SC = 4, YGO = 5, GS = 7 };
 	while (x < TOTAL_MONSTER_SPRITES)
 	{
 		for (int j = 0; j < (SCREEN_HEIGHT / TILE_HEIGHT); j++)
@@ -395,7 +395,7 @@ void SelectScreen::getButtonFunction()
 				characterSet[x] = temp;
 				x++;
 			}
-			if (j == DIABLO || j == WH || j == SC || j == YGO)
+			if (j == DIABLO || j == WH || j == SC || j == YGO || j ==GS)
 			{
 				h_offset += 60;
 			}

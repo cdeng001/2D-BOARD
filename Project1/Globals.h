@@ -45,13 +45,15 @@ bool checkCollision(SDL_Rect a, SDL_Rect b);
 /**/void clipOverlays();
 /**/
 /**/void clipButtons();
+/**/
+/**/void clipPhases();
 //End of clipping functions
 
 void getTaunt(int i);
 
 void checkClickMonster(int x, int y, Monster* &target, int gameState, int p);
 
-void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss, int p, SDL_Rect win);
+void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss, int &p, SDL_Rect win, Button* b[], bool &first);
 
 void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hover, int gameState, SelectScreen &ss, SDL_Rect win, int p);
 
@@ -74,7 +76,7 @@ void displayBlank(int p);
 
 void readGameState(int p, Monster* &target, Tile* tile[], SDL_Rect &camera);
 
-void transitionAnimate(int scrolling_offset, bool &start);
+void transitionAnimate(int scrolling_offset, bool &start, int i);
 
 //The window we'll be rendering to
 extern SDL_Window* gWindow;
@@ -108,6 +110,7 @@ extern SDL_Rect gAvatarClips[TOTAL_MONSTER_SPRITES];
 extern SDL_Rect gStatClips[TOTAL_STATS];
 extern SDL_Rect gOverlays[TOTAL_OVERLAYS];
 extern SDL_Rect gButtonClips[TOTAL_BUTTONS];
+extern SDL_Rect gPhaseClips[8];
 
 //stat menu rects
 extern SDL_Rect nameBlock;

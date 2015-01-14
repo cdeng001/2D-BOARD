@@ -10,7 +10,7 @@
 #include "Globals.h"
 
 Team::Team():
-cur_capacity(0), maxActionPoints(5), currentActionPoints(2), unusedActionPoints(2)
+cur_capacity(0), maxActionPoints(7), currentActionPoints(2), unusedActionPoints(2)
 {
 	for (int i = 0; i < TEAM_SIZE; i++)
 	{
@@ -342,4 +342,9 @@ void Team::setCurrentAP(int i)
 {
 	this->currentActionPoints = i;
 	return;
+}
+
+int Team::getMaxAP()
+{
+	return this->maxActionPoints;
 }

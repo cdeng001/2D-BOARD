@@ -20,6 +20,7 @@ public:
 
 	int getCurrentAP();
 	int getUnusedAP();
+	int getMaxAP();
 	void setUnusedAP(int i);
 	void setCurrentAP(int i);
 

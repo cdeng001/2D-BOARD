@@ -36,15 +36,9 @@ int main(int argc, char* args[])
 		Tile* tileSet[TOTAL_TILES];
 		Button* buttonSet[TOTAL_TRANSITION_BUTTONS];
 
-		//clip avatars
-		clipAvatars();
-		clipStatTemp();
-		clipOverlays();
-		clipButtons();
 		populateStatLoc();
 		populateButton(buttonSet);
 		populateIcon(iconSet);
-		//populateTeams(team1, team2);
 
 		//Load media
 		if (!loadMedia(tileSet))
@@ -56,6 +50,8 @@ int main(int argc, char* args[])
 			//Main loop flag
 			bool quit = false;
 			bool gameStart = false;
+			bool p1s = false, p1m = false, p1b = false, p2s = false, p2m = false, p2b = false;
+			bool first = false;
 
 			//Event handler
 			SDL_Event e;
@@ -66,6 +62,7 @@ int main(int argc, char* args[])
 			//keeps track of the state of the game
 			int gameState = MENU_SCREEN;
 			
+			bool turn_end = false;
 			int p;              //keeps track of the phase while in game;
 			int turnCount = 0;  //keeps track of the number of turns that have passed.
 
@@ -100,7 +97,7 @@ int main(int argc, char* args[])
 
 					if (e.type == SDL_MOUSEBUTTONDOWN)
 					{
-						mouseHandle(e, tileSet, target, gameState, selectMenu, p, select_window);
+						mouseHandle(e, tileSet, target, gameState, selectMenu, p, select_window, buttonSet, first);
 					}
 
 					if (e.type == SDL_MOUSEWHEEL)
@@ -144,6 +141,22 @@ int main(int argc, char* args[])
 						p = PLAYER1_STANDBY;
 					}
 
+					if (p == PLAYER1_STANDBY || p == PLAYER2_STANDBY)
+					{
+						if (p == PLAYER1_STANDBY && first){ p1s = true; scrolling_offset = 0; }
+						else if (p == PLAYER2_STANDBY && first){ p2s = true; scrolling_offset = 0; }
+						turn_end = true;
+					}
+					else if (p == PLAYER1_MOVEMENT || p == PLAYER2_MOVEMENT)
+					{
+						if (p == PLAYER1_MOVEMENT && first){ p1m = true; scrolling_offset = 0; }
+						else if (p == PLAYER2_MOVEMENT && first){ p2m = true; scrolling_offset = 0; }
+					}
+					else if (p == PLAYER1_BATTLE || p == PLAYER2_BATTLE)
+					{
+						if (p == PLAYER1_BATTLE && first){ p1b = true; scrolling_offset = 0; }
+						else if (p == PLAYER2_BATTLE && first){ p2b = true; scrolling_offset = 0; }
+					}
 					//Move the dot
 					dot.move(tileSet);
 					dot.setCamera(camera, mouse_x, mouse_y);
@@ -277,17 +290,75 @@ int main(int argc, char* args[])
 					}
 					if (!gameStart)
 					{
-						transitionAnimate(scrolling_offset, gameStart);
+						transitionAnimate(scrolling_offset, gameStart, 3);
 						scrolling_offset += 5;
 					}
 
-					if (p == PLAYER1_END || p == PLAYER2_END)
+					if (p1s && p == PLAYER1_STANDBY)
 					{
-						target == NULL;
-						turnCount++;
-						if (p == PLAYER2_END){ team1.setUnusedAP(team1.getCurrentAP()); }
-						else if (p == PLAYER2_END){ team2.setUnusedAP(team2.getCurrentAP()); }
+						transitionAnimate(scrolling_offset, p1s, 2);
+						scrolling_offset += 5;
+						first = false;
+					}
+					else if (p1m && p == PLAYER1_MOVEMENT)
+					{
+						transitionAnimate(scrolling_offset, p1m, 0);
+						scrolling_offset += 5;
+						first = false;
+					}
+					else if (p2s && p == PLAYER2_STANDBY)
+					{
+						transitionAnimate(scrolling_offset, p2s, 4);
+						scrolling_offset += 5;
+						first = false;
+					}
+					else if (p2m && p == PLAYER2_MOVEMENT)
+					{
+						transitionAnimate(scrolling_offset, p2m, 6);
+						scrolling_offset += 5;
+						first = false;
+					}
+					else if (p1b && p == PLAYER1_BATTLE)
+					{
+						transitionAnimate(scrolling_offset, p1b, 1);
+						scrolling_offset += 5;
+						first = false;
+					}
+					else if (p2b && p == PLAYER2_BATTLE)
+					{
+						transitionAnimate(scrolling_offset, p2b, 5);
+						scrolling_offset += 5;
+						first = false;
+					}
+
+					if ((p == PLAYER1_END || p == PLAYER2_END) && (turn_end))
+					{
+						target = NULL;
 						
+						if (p == PLAYER1_END)
+						{ 
+							team1.setUnusedAP(team1.getCurrentAP()); 
+						}
+						else if (p == PLAYER2_END)
+						{ 
+							team2.setUnusedAP(team2.getCurrentAP());
+							turnCount++;
+						}
+
+						if (turnCount % 2 == 0 && turnCount>0)
+						{
+							if (team1.getCurrentAP() < team1.getMaxAP())
+							{
+								team1.setCurrentAP(team1.getCurrentAP() + 1);
+								team1.setUnusedAP(team1.getCurrentAP());
+							}
+							if (team2.getCurrentAP() < team2.getMaxAP())
+							{
+								team2.setCurrentAP(team2.getCurrentAP() + 1);
+								team2.setUnusedAP(team2.getCurrentAP());
+							}
+						}
+						turn_end = false;
 					}
 				}
 				

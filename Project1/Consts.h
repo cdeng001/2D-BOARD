@@ -213,6 +213,12 @@ enum button_name{
 	UP_BUTTON,
 	HOVER_BUTTON,
 	SELECT_BUTTON,
+	BLUE_1,
+	BLUE_2,
+	BLUE_3,
+	RED_1,
+	RED_2,
+	RED_3,
 
 	TOTAL_BUTTONS
 };
