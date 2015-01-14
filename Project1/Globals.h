@@ -27,7 +27,7 @@ void loadMusic();
 
 bool loadMedia(Tile* tiles[]);
 
-void close(Tile* tiles[]);
+void close(Tile* tiles[], Button* buttons[]);
 
 bool checkCollision(SDL_Rect a, SDL_Rect b);
 
@@ -53,7 +53,7 @@ void checkClickMonster(int x, int y, Monster* &target, int gameState, int p);
 
 void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss, int p, SDL_Rect win);
 
-void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hover, int gameState, SelectScreen &ss, SDL_Rect win);
+void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hover, int gameState, SelectScreen &ss, SDL_Rect win, int p);
 
 void mouseWheelHandle(SDL_Event e, SDL_Rect &window_screen, SelectScreen &ss);
 
@@ -68,7 +68,9 @@ void populateStatLoc();
 
 void populateIcon(Icon* iconSet[]);
 
-void displayBlank();
+void populateButton(Button* buttons[]);
+
+void displayBlank(int p);
 
 void readGameState(int p, Monster* &target, Tile* tile[], SDL_Rect &camera);
 

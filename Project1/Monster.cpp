@@ -91,21 +91,23 @@ bool Monster::showRange(Tile* tile[], SDL_Rect &camera)
 	return true;
 }
 
-bool Monster::showSpeed(Tile* tile[], SDL_Rect& camera, int name)
+bool Monster::showSpeed(Tile* tile[], SDL_Rect& camera)
 {
 	for (int i = 0; i < TOTAL_TILES; i++)
 	{
 		int check = abs(tile[i]->getCol() - (col + 1)) + abs(tile[i]->getRow() - (row + 1));
 		if (check <= speed)
 		{
-			tile[i]->highlightTile(name, camera);
+			tile[i]->highlightTile(HIGHLIGHT_RANGE_MOVEMENT, camera);
 		}
 	}
 	return true;
 }
 
-void Monster::doDamageTo(Monster* enemy)
+bool Monster::doDamageTo(Monster* enemy)
 {
+	bool success = false;
+
 	if (current_mana > 0)
 	{
 		current_mana--;
@@ -115,13 +117,17 @@ void Monster::doDamageTo(Monster* enemy)
 			if (newHealth <= 0)
 			{
 				enemy->current_health = 0;
+				success = true;
 			}
 			else
 			{
 				enemy->current_health = newHealth;
+				success = true;
 			}
 		}
 	}
+
+	return success;
 }
 
 bool Monster::checkDead()
@@ -250,6 +256,11 @@ bool Monster::checkInRange(Monster* target, int r)
 {
 	bool inRange = false;
 	//check if it is same monster
+	if (target == NULL)
+	{
+		return inRange;
+	}
+
 	if ((target->getCol() == (col)) && (target->getRow() == (row)))
 	{
 		return inRange;

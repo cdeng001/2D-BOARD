@@ -15,11 +15,16 @@ public:
 	int getCurr();
 	void addMonster(int i, int x, int y);
 	Monster*& getMonster(int i);
-	void damageMonster(int i, Monster* target);
+	bool damageMonster(int i, Monster* target);
 	bool checkFull();
 
+	int getCurrentAP();
+	int getUnusedAP();
+	void setUnusedAP(int i);
+	void setCurrentAP(int i);
+
 private:
-	int max_capacity;
+	int maxActionPoints, currentActionPoints, unusedActionPoints;
 	int cur_capacity;
 	Monster* team[TEAM_SIZE];
 };

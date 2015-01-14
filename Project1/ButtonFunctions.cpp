@@ -36,3 +36,38 @@ void changeToQuit(int &gameState)
 	return;
 }
 
+void p1_move(int &phase)
+{
+	phase = PLAYER1_MOVEMENT;
+	return;
+}
+
+void p1_battle(int &phase)
+{
+	phase = PLAYER1_BATTLE;
+	return;
+}
+
+void p1_end(int &phase)
+{
+	phase = PLAYER1_END;
+	return;
+}
+
+void p2_move(int &phase)
+{
+	phase = PLAYER2_MOVEMENT;
+	return;
+}
+
+void p2_battle(int &phase)
+{
+	phase = PLAYER2_BATTLE;
+	return;
+}
+
+void p2_end(int &phase)
+{
+	phase = PLAYER2_END;
+	return;
+}

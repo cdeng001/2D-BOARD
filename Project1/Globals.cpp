@@ -274,7 +274,7 @@ bool loadMedia(Tile* tiles[])
 	return success;
 }
 
-void close(Tile* tiles[])
+void close(Tile* tiles[], Button* buttons[])
 {
 	//Deallocate tiles
 	for (int i = 0; i < TOTAL_TILES; ++i)
@@ -283,6 +283,15 @@ void close(Tile* tiles[])
 		{
 			delete tiles[i];
 			tiles[i] = NULL;
+		}
+	}
+
+	for (int i = 0; i < TOTAL_TRANSITION_BUTTONS; ++i)
+	{
+		if (buttons[i] == NULL)
+		{
+			delete buttons[i];
+			buttons[i] = NULL;
 		}
 	}
 
@@ -608,6 +617,15 @@ bool checkCollision(SDL_Rect a, SDL_Rect b)
 	clipTarget(gMonsterClips, Dark_Magician, 240, 240, TILE_WIDTH, TILE_HEIGHT);
 	clipTarget(gMonsterClips, Blue_Eyes, 280, 240, TILE_WIDTH, TILE_HEIGHT);
 
+	clipTarget(gMonsterClips, Jinzo, 0, 280, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Dark_Paladin, 40, 280, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Neos, 80, 280, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Reign_Beaux, 120, 280, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Utopia, 160, 280, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Stardust, 200, 280, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Dark_Armed_Dragon, 240, 280, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Gottoms, 280, 280, TILE_WIDTH, TILE_HEIGHT);
+
 	return true;
 }
 /**/
@@ -672,6 +690,15 @@ bool checkCollision(SDL_Rect a, SDL_Rect b)
 	clipTarget(gAvatarClips, Caius, 500, 600, AVATAR_WIDTH, AVATAR_HEIGHT);
 	clipTarget(gAvatarClips, Dark_Magician, 600, 600, AVATAR_WIDTH, AVATAR_HEIGHT);
 	clipTarget(gAvatarClips, Blue_Eyes, 700, 600, AVATAR_WIDTH, AVATAR_HEIGHT);
+
+	clipTarget(gAvatarClips, Jinzo, 0, 700, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Dark_Paladin, 100, 700, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Neos, 200, 700, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Reign_Beaux, 300, 700, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Utopia, 400, 700, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Stardust, 500, 700, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Dark_Armed_Dragon, 600, 700, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Gottoms, 700, 700, AVATAR_WIDTH, AVATAR_HEIGHT);
 }
 /**/
 /**/void clipStatTemp()
@@ -681,6 +708,11 @@ bool checkCollision(SDL_Rect a, SDL_Rect b)
 	clipTarget(gStatClips, RANGE, 0, 48, 200, 24);
 	clipTarget(gStatClips, SPEED, 0, 72, 200, 24);
 	clipTarget(gStatClips, MANA, 0, 96, 200, 24);
+
+	clipTarget(gStatClips, BLUE_GEM, 0, 120, 24, 24);
+	clipTarget(gStatClips, GREEN_GEM, 24, 120, 24, 24);
+	clipTarget(gStatClips, GREY_GEM, 48, 120, 24, 24);
+	clipTarget(gStatClips, RED_GEM, 72, 120, 24, 24);
 }
 /**/
 /**/void clipOverlays()
@@ -811,20 +843,21 @@ void getTaunt(int i)
 
 void checkClickMonster(int x, int y, Monster* &target, int gameState, int p)
 {
-	if (p != PLAYER1_END && p != PLAYER2_END && p != AI_PHASE1 && p != AI_PHASE2)
+	if ((p != PLAYER1_END) && (p != PLAYER2_END) && (p != AI_PHASE1) && (p != AI_PHASE2))
 	{
 		for (int i = 0; i < TEAM_SIZE; i++)
 		{
 			if (team1.getMonster(i)->checkClick(x, y))
 			{
-				if (!(team1.getMonster(i)->checkDead()) && p == PLAYER1_STANDBY)
+				std::cout << i << std::endl;
+				if (!(team1.getMonster(i)->checkDead()) )
 				{
 					target = team1.getMonster(i);
 				}
 			}
 			if (team2.getMonster(i)->checkClick(x, y))
 			{
-				if (!(team2.getMonster(i)->checkDead()) && p == PLAYER2_STANDBY)
+				if (!(team2.getMonster(i)->checkDead()) )
 				{
 					target = team2.getMonster(i);
 				}
@@ -841,16 +874,26 @@ void checkClickMonster(int x, int y, Monster* &target, int gameState, int p)
 				{
 					if ((team1.getMonster(i)->checkInRange(target, p)) && p == PLAYER2_BATTLE )
 					{
-						std::cout << i << std::endl;
-						team1.damageMonster(i, target);
+						if (team1.getUnusedAP() > 0)
+						{
+							if (team1.damageMonster(i, target))
+							{
+								team1.setUnusedAP(team1.getUnusedAP() - 1);
+							}
+						}
 					}
 				}
 				if (team2.getMonster(i)->checkClick(x, y))
 				{
 					if ((team2.getMonster(i)->checkInRange(target, p)) && p == PLAYER1_BATTLE )
 					{
-						std::cout << i << std::endl;
-						team2.damageMonster(i, target);
+						if (team2.getUnusedAP() > 0)
+						{
+							if (team2.damageMonster(i, target))
+							{
+								team2.setUnusedAP(team2.getUnusedAP() - 1);
+							}
+						}
 					}
 				}
 			}
@@ -930,11 +973,24 @@ void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, S
 						{
 							if ((p == PLAYER1_MOVEMENT) && (team1.getMonster(j) == target))
 							{
-								target->moveUnit(tiles[i]->getCol(), tiles[i]->getRow());
+								if (team1.getUnusedAP() > 0)
+								{
+									if (target->moveUnit(tiles[i]->getCol(), tiles[i]->getRow()))
+									{
+										team1.setUnusedAP(team1.getUnusedAP() - 1);
+									}
+								}
+								
 							}
 							else if ((p == PLAYER2_MOVEMENT) && (team2.getMonster(j) == target))
 							{
-								target->moveUnit(tiles[i]->getCol(), tiles[i]->getRow());
+								if (team2.getUnusedAP() > 0)
+								{
+									if (target->moveUnit(tiles[i]->getCol(), tiles[i]->getRow()))
+									{
+										team2.setUnusedAP(team2.getUnusedAP() - 1);
+									}
+								}
 							}
 						}
 						
@@ -946,7 +1002,7 @@ void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, S
 	}
 }
 
-void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hover, int gameState, SelectScreen &ss, SDL_Rect win)
+void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hover, int gameState, SelectScreen &ss, SDL_Rect win, int p)
 {
 	//initialize rectangle to represent sub-screen
 	bool mouseOverMonster = false;
@@ -954,7 +1010,7 @@ void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hov
 
 	if (gameState < MENU_SCREEN)
 	{
-		displayBlank();
+		displayBlank(p);
 		for (int i = 0; i < TEAM_SIZE; i++)
 		{
 			if (team1.getMonster(i)->checkClick(mouse_x, mouse_y))
@@ -1147,7 +1203,42 @@ void populateIcon(Icon* iconSet[])
 	}
 }
 
-void displayBlank()
+void populateButton(Button* buttons[])
+{
+	for (int i = 0; i < TOTAL_TRANSITION_BUTTONS; i++)
+	{
+		buttons[i] = new Button;
+	}
+
+	buttons[0]->setActionFunction(p1_move);
+	buttons[0]->setLoc(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 50);
+	buttons[0]->setSize( 50, 50);
+
+	buttons[1]->setActionFunction(p1_battle);
+	buttons[1]->setLoc(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 50);
+	buttons[1]->setSize(50, 50);
+
+	buttons[2]->setActionFunction(p1_end);
+	buttons[2]->setLoc(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 50);
+	buttons[2]->setSize(50, 50);
+
+	buttons[3]->setActionFunction(p2_move);
+	buttons[3]->setLoc(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 50);
+	buttons[3]->setSize(50, 50);
+
+	buttons[4]->setActionFunction(p2_battle);
+	buttons[4]->setLoc(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 50);
+	buttons[4]->setSize(50, 50);
+
+	buttons[5]->setActionFunction(p2_end);
+	buttons[5]->setLoc(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 50);
+	buttons[5]->setSize(50, 50);
+
+
+
+}
+
+void displayBlank(int p)
 {
 	SDL_Rect temp;
 	temp.x = 0;
@@ -1155,7 +1246,36 @@ void displayBlank()
 	temp.w = LOWER_SCREEN_WIDTH;
 	temp.h = LOWER_SCREEN_HEIGHT;
 	gLowerSubscreen.render(0, SUBSCREEN_HEIGHT, &temp);
-	//std::cout << gLowerSubscreen.getHeight() << "," << gLowerSubscreen.getWidth() << std::endl;
+
+	if (p < AI_PHASE2)
+	{
+		for (int i = 0; i < team1.getCurrentAP(); i++)
+		{
+			if (i < team1.getUnusedAP())
+			{
+				gStatTemplate.render(SCREEN_WIDTH - ((i + 1) * 24), 500, &gStatClips[BLUE_GEM]);
+			}
+			else
+			{
+				gStatTemplate.render(SCREEN_WIDTH - ((i + 1) * 24), 500, &gStatClips[GREY_GEM]);
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0; i < team2.getCurrentAP(); i++)
+		{
+			if (i < team2.getUnusedAP())
+			{
+				gStatTemplate.render(SCREEN_WIDTH - ((i + 1) * 24), 500, &gStatClips[RED_GEM]);
+			}
+			else
+			{
+				gStatTemplate.render(SCREEN_WIDTH - ((i + 1) * 24), 500, &gStatClips[GREY_GEM]);
+			}
+		}
+	}
+	
 }
 
 void readGameState(int p, Monster* &target, Tile* tile[], SDL_Rect &camera)
@@ -1164,14 +1284,34 @@ void readGameState(int p, Monster* &target, Tile* tile[], SDL_Rect &camera)
 	{
 		if (target != NULL)
 		{
-			target->showSpeed(tile, camera, HIGHLIGHT_RANGE_MOVEMENT);
+			for (int i = 0; i < TEAM_SIZE; i++)
+			{
+				if (team1.getMonster(i) == target && p == PLAYER1_MOVEMENT)
+				{
+					target->showSpeed(tile, camera);
+				}
+				else if (team2.getMonster(i) == target && p == PLAYER2_MOVEMENT)
+				{
+					target->showSpeed(tile, camera);
+				}
+			}
 		}
 	}
 	else if (p == PLAYER1_BATTLE || p == PLAYER2_BATTLE)
 	{
 		if (target != NULL)
 		{
-			target->showRange(tile, camera);
+			for (int i = 0; i < TEAM_SIZE; i++)
+			{
+				if (team1.getMonster(i) == target && p == PLAYER1_BATTLE)
+				{
+					target->showRange(tile, camera);
+				}
+				else if (team2.getMonster(i) == target && p == PLAYER2_BATTLE)
+				{
+					target->showRange(tile, camera);
+				}
+			}
 		}
 	}
 }

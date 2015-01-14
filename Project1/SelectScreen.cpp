@@ -200,6 +200,30 @@ std::string SelectScreen::getMonster(int i, Button &b)
 	case Blue_Eyes:
 		return "Blue Eyes White Dragon";
 		break;
+	case Jinzo:
+		return "Jinzo";
+		break;
+	case Dark_Paladin:
+		return "Dark Paladin";
+		break;
+	case Neos:
+		return "Elemental Hero Neos";
+		break;
+	case Reign_Beaux:
+		return "Reign-Beaux, Overlord of the Dark World";
+		break;
+	case Utopia:
+		return "Number 39: Utopia";
+		break;
+	case Stardust:
+		return "Stardust Dragon";
+		break;
+	case Dark_Armed_Dragon:
+		return "Dark Armed Dragon";
+		break;
+	case Gottoms:
+		return "XX-Saber Gottoms";
+		break;
 	default:
 		return " ";
 		break;

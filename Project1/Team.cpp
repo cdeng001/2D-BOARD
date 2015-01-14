@@ -10,7 +10,7 @@
 #include "Globals.h"
 
 Team::Team():
-max_capacity(TEAM_SIZE), cur_capacity(0)
+cur_capacity(0), maxActionPoints(5), currentActionPoints(2), unusedActionPoints(2)
 {
 	for (int i = 0; i < TEAM_SIZE; i++)
 	{
@@ -263,6 +263,38 @@ void Team::addMonster(int i, int x, int y)
 			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Blue-Eyes White Dragon", i);
 			team[cur_capacity] = temp;
 			break;
+		case Jinzo:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Jinzo", i);
+			team[cur_capacity] = temp;
+			break;
+		case Dark_Paladin:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Dark Paladin", i);
+			team[cur_capacity] = temp;
+			break;
+		case Neos:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Neos", i);
+			team[cur_capacity] = temp;
+			break;
+		case Reign_Beaux:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Reign-Beaux", i);
+			team[cur_capacity] = temp;
+			break;
+		case Utopia:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Utopia", i);
+			team[cur_capacity] = temp;
+			break;
+		case Stardust:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Stardust Dragon", i);
+			team[cur_capacity] = temp;
+			break;
+		case Dark_Armed_Dragon:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Dark Armed Dragon", i);
+			team[cur_capacity] = temp;
+			break;
+		case Gottoms:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "XX-Saber Gottoms", i);
+			team[cur_capacity] = temp;
+			break;
 		default:
 			break;
 		}
@@ -280,12 +312,34 @@ int Team::getCurr()
 	return this->cur_capacity;
 }
 
-void Team::damageMonster(int i, Monster* target)
+bool Team::damageMonster(int i, Monster* target)
 {
-	target->doDamageTo(team[i]);
+	return target->doDamageTo(team[i]);
 }
 
 bool Team::checkFull()
 {
-	return cur_capacity >= max_capacity;
+	return cur_capacity >= TEAM_SIZE;
+}
+
+int Team::getCurrentAP()
+{
+	return this->currentActionPoints;
+}
+
+int Team::getUnusedAP()
+{
+	return this->unusedActionPoints;
+}
+
+void Team::setUnusedAP(int i)
+{
+	this->unusedActionPoints = i;
+	return;
+}
+
+void Team::setCurrentAP(int i)
+{
+	this->currentActionPoints = i;
+	return;
 }

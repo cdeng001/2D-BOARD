@@ -27,12 +27,12 @@ public:
 	virtual void displayAction(SDL_Rect &camera);
 
 	bool moveUnit(int x, int y);
-	void doDamageTo(Monster* enemy);
+	bool doDamageTo(Monster* enemy);
 	bool checkDead();
 	bool heal();
 
 	bool showRange(Tile* tile[], SDL_Rect& camera);
-	bool showSpeed(Tile* tile[], SDL_Rect& camera, int name);
+	bool showSpeed(Tile* tile[], SDL_Rect& camera);
 	bool checkInRange(Monster* target, int r);
 
 protected:

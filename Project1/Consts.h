@@ -34,13 +34,17 @@ const int AVATAR_HEIGHT = 100;
 
 const int TEAM_SIZE = 6;
 
-const int TOTAL_STATS = 6;
+const int TOTAL_STATS = 10;
 const int HEALTH = 0;
 const int ATTACK = 1;
 const int RANGE = 2;
 const int SPEED = 3;
 const int MANA = 4;
 const int NAME = 5;
+const int BLUE_GEM = 6;
+const int RED_GEM = 7;
+const int GREEN_GEM = 8;
+const int GREY_GEM = 9;
 
 //Font stuff
 const int FONT_SIZE = 18;
@@ -126,6 +130,14 @@ enum {
 	Caius,
 	Dark_Magician,
 	Blue_Eyes,
+	Jinzo,
+	Dark_Paladin,
+	Neos,
+	Reign_Beaux,
+	Utopia,
+	Stardust,
+	Dark_Armed_Dragon,
+	Gottoms,
 
 	TOTAL_MONSTER_SPRITES
 };
@@ -219,3 +231,4 @@ const int PLAYER2_BATTLE = 8;
 const int PLAYER2_END = 9;
 
 const int TOTAL_PHASES = 10;
+const int TOTAL_TRANSITION_BUTTONS = 6;
