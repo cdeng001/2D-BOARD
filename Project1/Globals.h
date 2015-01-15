@@ -53,7 +53,7 @@ void getTaunt(int i);
 
 void checkClickMonster(int x, int y, Monster* &target, int gameState, int p);
 
-void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss, int &p, SDL_Rect win, Button* b[], bool &first);
+void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss, int &p, SDL_Rect win, Button* b[], bool &first, SDL_Rect camera);
 
 void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hover, int gameState, SelectScreen &ss, SDL_Rect win, int p);
 

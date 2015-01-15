@@ -97,7 +97,7 @@ int main(int argc, char* args[])
 
 					if (e.type == SDL_MOUSEBUTTONDOWN)
 					{
-						mouseHandle(e, tileSet, target, gameState, selectMenu, p, select_window, buttonSet, first);
+						mouseHandle(e, tileSet, target, gameState, selectMenu, p, select_window, buttonSet, first, camera);
 					}
 
 					if (e.type == SDL_MOUSEWHEEL)
@@ -347,12 +347,12 @@ int main(int argc, char* args[])
 
 						if (turnCount % 2 == 0 && turnCount>0)
 						{
-							if (team1.getCurrentAP() < team1.getMaxAP())
+							if ((team1.getCurrentAP() < team1.getMaxAP()) && (p==PLAYER1_END))
 							{
 								team1.setCurrentAP(team1.getCurrentAP() + 1);
 								team1.setUnusedAP(team1.getCurrentAP());
 							}
-							if (team2.getCurrentAP() < team2.getMaxAP())
+							else if ((team2.getCurrentAP() < team2.getMaxAP()) && (p==PLAYER2_END))
 							{
 								team2.setCurrentAP(team2.getCurrentAP() + 1);
 								team2.setUnusedAP(team2.getCurrentAP());

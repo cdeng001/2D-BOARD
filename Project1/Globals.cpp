@@ -929,7 +929,7 @@ void checkClickMonster(int x, int y, Monster* &target, int gameState, int p)
 	return;
 }
 
-void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss, int &p, SDL_Rect win, Button* b[], bool &first)
+void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, SelectScreen &ss, int &p, SDL_Rect win, Button* b[], bool &first, SDL_Rect camera)
 {
 	//deal with turn player
 	if (e.button.button == SDL_BUTTON_LEFT)
@@ -1023,12 +1023,14 @@ void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, S
 					}
 				}
 			}
-			if (p == PLAYER1_STANDBY){ first = b[0]->checkClick(mouse_x, mouse_y, p); }
-			else if (p == PLAYER1_MOVEMENT){ first = b[1]->checkClick(mouse_x, mouse_y, p); }
-			else if (p == PLAYER1_BATTLE){ first = b[2]->checkClick(mouse_x, mouse_y, p); }
-			else if (p == PLAYER2_STANDBY){ first = b[3]->checkClick(mouse_x, mouse_y, p); }
-			else if (p == PLAYER2_MOVEMENT){ first = b[4]->checkClick(mouse_x, mouse_y, p); }
-			else if (p == PLAYER2_BATTLE){ first = b[5]->checkClick(mouse_x, mouse_y, p); }
+			int x = mouse_x - camera.x;
+			int y = mouse_y - camera.y;
+			if (p == PLAYER1_STANDBY){ first = b[0]->checkClick(x, y, p); }
+			else if (p == PLAYER1_MOVEMENT){ first = b[1]->checkClick(x, y, p); }
+			else if (p == PLAYER1_BATTLE){ first = b[2]->checkClick(x, y, p); }
+			else if (p == PLAYER2_STANDBY){ first = b[3]->checkClick(x, y, p); }
+			else if (p == PLAYER2_MOVEMENT){ first = b[4]->checkClick(x, y, p); }
+			else if (p == PLAYER2_BATTLE){ first = b[5]->checkClick(x, y, p); }
 			checkClickMonster(mouse_x, mouse_y, target, gameState, p);
 		}
 	}
