@@ -632,6 +632,23 @@ bool checkCollision(SDL_Rect a, SDL_Rect b)
 	clipTarget(gMonsterClips, Dark_Armed_Dragon, 240, 280, TILE_WIDTH, TILE_HEIGHT);
 	clipTarget(gMonsterClips, Gottoms, 280, 280, TILE_WIDTH, TILE_HEIGHT);
 
+	clipTarget(gMonsterClips, Cain, 0, 320, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Hilder, 40, 320, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Isis, 80, 320, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Kasillas, 120, 320, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Siroco, 160, 320, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Diregie, 200, 320, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Anton, 240, 320, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Lotus, 280, 320, TILE_WIDTH, TILE_HEIGHT);
+
+	clipTarget(gMonsterClips, Luke, 0, 360, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Bakal, 40, 360, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Michael, 80, 360, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Ozma, 120, 360, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Sighard, 160, 360, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Gaunis, 200, 360, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Bwanga, 240, 360, TILE_WIDTH, TILE_HEIGHT);
+	clipTarget(gMonsterClips, Agonzo, 280, 360, TILE_WIDTH, TILE_HEIGHT);
 	return true;
 }
 /**/
@@ -705,6 +722,24 @@ bool checkCollision(SDL_Rect a, SDL_Rect b)
 	clipTarget(gAvatarClips, Stardust, 500, 700, AVATAR_WIDTH, AVATAR_HEIGHT);
 	clipTarget(gAvatarClips, Dark_Armed_Dragon, 600, 700, AVATAR_WIDTH, AVATAR_HEIGHT);
 	clipTarget(gAvatarClips, Gottoms, 700, 700, AVATAR_WIDTH, AVATAR_HEIGHT);
+
+	clipTarget(gAvatarClips, Cain, 0, 800, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Hilder, 100, 800, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Isis, 200, 800, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Kasillas, 300, 800, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Siroco, 400, 800, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Diregie, 500, 800, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Anton, 600, 800, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Lotus, 700, 800, AVATAR_WIDTH, AVATAR_HEIGHT);
+
+	clipTarget(gAvatarClips, Luke, 0, 900, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Bakal, 100, 900, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Michael, 200, 900, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Ozma, 300, 900, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Sighard, 400, 900, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Gaunis, 500, 900, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Bwanga, 600, 900, AVATAR_WIDTH, AVATAR_HEIGHT);
+	clipTarget(gAvatarClips, Agonzo, 700, 900, AVATAR_WIDTH, AVATAR_HEIGHT);
 }
 /**/
 /**/void clipStatTemp()
@@ -1034,6 +1069,13 @@ void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, S
 			checkClickMonster(mouse_x, mouse_y, target, gameState, p);
 		}
 	}
+	else if (e.button.button == SDL_BUTTON_RIGHT)
+	{
+		if (gameState == CHARACTER_SELECTION)
+		{
+
+		}
+	}
 }
 
 void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hover, int gameState, SelectScreen &ss, SDL_Rect win, int p)
@@ -1101,13 +1143,12 @@ void mouseMotion(Tile* tile[], SDL_Rect& camera, Monster* &target, Monster* &hov
 			ss.setHover(INT_MAX);
 		}
 	}
-
 	return;
 }
 
 void mouseWheelHandle(SDL_Event e, SDL_Rect &window_screen, SelectScreen &ss)
 {
-	if (e.wheel.y < 0)
+	if (e.wheel.y > 0)
 	{
 		window_screen.y -= 1;
 		if (window_screen.y < 0)

@@ -224,6 +224,54 @@ std::string SelectScreen::getMonster(int i, Button &b)
 	case Gottoms:
 		return "XX-Saber Gottoms";
 		break;
+	case Cain:
+		return "First Apostle: Cain the Destroyer";
+		break;
+	case Hilder:
+		return "Second Apostle: Hilder the Crying Eye";
+		break;
+	case Isis:
+		return "Third Apostle: Isis the Preditor";
+		break;
+	case Kasillas:
+		return "Fourth Apostle: Kasillas the Conqueror";
+		break;
+	case Siroco:
+		return "Fifth Apostle: Siroko of Intangible";
+		break;
+	case Diregie:
+		return "Sixth Apostle: Diregie the Plague";
+		break;
+	case Anton:
+		return "Seventh Apostle: Flame Eater Anton";
+		break;
+	case Lotus:
+		return "Eighth Apostle: Gangling Lotus";
+		break;
+	case Luke:
+		return "Ninth Apostle: Luke the Constructor";
+		break;
+	case Bakal:
+		return "Tenth Apostle: Dragon King Bakal";
+		break;
+	case Michael:
+		return "Eleventh Apostle: Michael of Holy Eye";
+		break;
+	case Ozma:
+		return "Twelfth Apostle: Ozma of Chaos";
+		break;
+	case Sighard:
+		return "Sieghart the Castellan of Light";
+		break;
+	case Gaunis:
+		return "Rift Master Gaunis";
+		break;
+	case Bwanga:
+		return "Bwanga";
+		break;
+	case Agonzo:
+		return "Agonzo";
+		break;
 	default:
 		return " ";
 		break;
@@ -379,7 +427,7 @@ void SelectScreen::getButtonFunction()
 	int x = 0;
 	int h_offset = 50;
 	int w_offset = 150;
-	enum { WOW = 0, DIABLO = 1, WH = 2, SC = 4, YGO = 5, GS = 7 };
+	enum { WOW = 0, DIABLO = 1, WH = 2, SC = 4, YGO = 5, DFO = 7 };
 	while (x < TOTAL_MONSTER_SPRITES)
 	{
 		for (int j = 0; j < (SCREEN_HEIGHT / TILE_HEIGHT); j++)
@@ -395,9 +443,13 @@ void SelectScreen::getButtonFunction()
 				characterSet[x] = temp;
 				x++;
 			}
-			if (j == DIABLO || j == WH || j == SC || j == YGO || j ==GS)
+			if (j == DIABLO || j == WH || j == SC || j == YGO )
 			{
 				h_offset += 60;
+			}
+			else if (j == DFO)
+			{
+				h_offset += 100;
 			}
 			if (x >= TOTAL_MONSTER_SPRITES){ return; }
 		}

@@ -139,6 +139,24 @@ enum {
 	Dark_Armed_Dragon,
 	Gottoms,
 
+	//DFO
+	Cain,
+	Hilder,
+	Isis,
+	Kasillas,
+	Siroco,
+	Diregie,
+	Anton,
+	Lotus,
+	Luke,
+	Bakal,
+	Michael,
+	Ozma,
+	Sighard,
+	Gaunis,
+	Bwanga,
+	Agonzo,
+
 	TOTAL_MONSTER_SPRITES
 };
 

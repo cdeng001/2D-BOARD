@@ -73,6 +73,7 @@ int main(int argc, char* args[])
 			SDL_Rect camera = { 0, 0, SUBSCREEN_WIDTH, SUBSCREEN_HEIGHT };
 			SDL_Rect menu_camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 			SDL_Rect select_window = { 0, 0, SELECT_WINDOW_WIDTH, SELECT_WINDOW_HEIGHT };
+			SDL_Rect scroll_window = { 100, 10, SELECT_WINDOW_WIDTH, SELECT_WINDOW_HEIGHT };
 
 			Menu mainMenu;
 			SelectScreen selectMenu(0);
@@ -97,7 +98,7 @@ int main(int argc, char* args[])
 
 					if (e.type == SDL_MOUSEBUTTONDOWN)
 					{
-						mouseHandle(e, tileSet, target, gameState, selectMenu, p, select_window, buttonSet, first, camera);
+						mouseHandle(e, tileSet, target, gameState, selectMenu, p, scroll_window, buttonSet, first, camera);
 					}
 
 					if (e.type == SDL_MOUSEWHEEL)
@@ -337,7 +338,7 @@ int main(int argc, char* args[])
 						
 						if (p == PLAYER1_END)
 						{ 
-							team1.setUnusedAP(team1.getCurrentAP()); 
+							team1.setUnusedAP(team1.getCurrentAP());
 						}
 						else if (p == PLAYER2_END)
 						{ 
@@ -358,12 +359,26 @@ int main(int argc, char* args[])
 								team2.setUnusedAP(team2.getCurrentAP());
 							}
 						}
+
+						if (p == PLAYER1_END)
+						{
+							p = PLAYER2_STANDBY;
+						}
+						else if (p == PLAYER2_END)
+						{
+							p = PLAYER1_STANDBY;
+						}
+
+
 						turn_end = false;
 					}
 				}
 				
-				mouseMotion(tileSet, camera, target, hover, gameState, selectMenu, select_window, p);
+				mouseMotion(tileSet, camera, target, hover, gameState, selectMenu, scroll_window, p);
 
+				//SDL_SetRenderDrawColor(gRenderer, 255, 0, 255, 255);
+				//SDL_RenderDrawLine(gRenderer, 0, scroll_window.y, 640, scroll_window.y);
+				//SDL_RenderDrawLine(gRenderer, 0, scroll_window.y + scroll_window.h, 640, scroll_window.y + scroll_window.h);
 				//Update screen
 				SDL_RenderPresent(gRenderer);
 			}

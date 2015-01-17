@@ -295,6 +295,69 @@ void Team::addMonster(int i, int x, int y)
 			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "XX-Saber Gottoms", i);
 			team[cur_capacity] = temp;
 			break;
+		case Cain:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Cain", i);
+			team[cur_capacity] = temp;
+			break;
+		case Hilder:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Hilder", i);
+			team[cur_capacity] = temp;
+			break;
+		case Isis:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Isis", i);
+			team[cur_capacity] = temp;
+			break;
+		case Kasillas:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Kasillas", i);
+			team[cur_capacity] = temp;
+			break;
+		case Siroco:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Siroco", i);
+			team[cur_capacity] = temp;
+			break;
+		case Diregie:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Diregie", i);
+			team[cur_capacity] = temp;
+			break;
+		case Anton:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Anton", i);
+			team[cur_capacity] = temp;
+			break;
+		case Lotus:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Lotus", i);
+			team[cur_capacity] = temp;
+			break;
+		case Luke:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Luke", i);
+			team[cur_capacity] = temp;
+			break;
+		case Bakal:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Bakal", i);
+			team[cur_capacity] = temp;
+			break;
+		case Michael:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Michael", i);
+			team[cur_capacity] = temp;
+			break;
+		case Ozma:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Ozma", i);
+			team[cur_capacity] = temp;
+		case Sighard:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Sieghart", i);
+			team[cur_capacity] = temp;
+			break;
+		case Gaunis:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Gaunis", i);
+			team[cur_capacity] = temp;
+			break;
+		case Bwanga:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Bwanga", i);
+			team[cur_capacity] = temp;
+			break;
+		case Agonzo:
+			temp = new Monster(x, y, 10, 5, 1, 1, RANGED_DAMAGE_TYPE, 2, "Agonzo", i);
+			team[cur_capacity] = temp;
+			break;
 		default:
 			break;
 		}
