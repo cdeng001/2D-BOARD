@@ -1397,7 +1397,7 @@ void readGameState(int p, Monster* &target, Tile* tile[], SDL_Rect &camera)
 	}
 }
 
-void transitionAnimate(int scrolling_offset, bool &start,int i)
+void transitionAnimate(int scrolling_offset, bool &start, int i)
 {
 	if (scrolling_offset >= (gStartTexture.getWidth() + ((SCREEN_WIDTH / 2) - (gPhaseClips[i].w/2))))
 	{

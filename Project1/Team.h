@@ -6,6 +6,7 @@
 #include "Button.h"
 #include "LTexture.h"
 #include "Menu.h"
+#include <vector>
 
 class Team
 {
@@ -23,6 +24,8 @@ public:
 	int getMaxAP();
 	void setUnusedAP(int i);
 	void setCurrentAP(int i);
+
+	void removeMonster(int pos);
 
 private:
 	int maxActionPoints, currentActionPoints, unusedActionPoints;

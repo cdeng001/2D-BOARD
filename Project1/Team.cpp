@@ -411,3 +411,24 @@ int Team::getMaxAP()
 {
 	return this->maxActionPoints;
 }
+
+void Team::removeMonster(int pos)
+{
+	for (int i = pos; i < TEAM_SIZE; i++)
+	{
+		if (i < TEAM_SIZE - 1)
+		{
+			cur_capacity--;
+			delete team[i];
+			this->addMonster(team[i + 1]->getType(), team[i + 1]->getCol(), team[i + 1]->getRow());
+		}
+		else
+		{
+			cur_capacity--;
+			delete team[i];
+			team[i] = NULL;
+		}
+	}
+
+	return;
+}
