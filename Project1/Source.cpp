@@ -52,6 +52,7 @@ int main(int argc, char* args[])
 			bool gameStart = false;
 			bool p1s = false, p1m = false, p1b = false, p2s = false, p2m = false, p2b = false;
 			bool first = false;
+			bool gameOver = false;
 
 			//Event handler
 			SDL_Event e;
@@ -125,6 +126,7 @@ int main(int argc, char* args[])
 				if (gameState == MENU_SCREEN)
 				{
 					mainMenu.menuDisplay(menu_camera);
+					gameOver = false;
 				}
 				else if (gameState == CHARACTER_SELECTION)
 				{
@@ -372,13 +374,21 @@ int main(int argc, char* args[])
 
 						turn_end = false;
 					}
+
+					if (team1.teamDead())
+					{
+						gameOver = true;
+						gameState = MENU_SCREEN;
+					}
+					else if (team2.teamDead())
+					{
+						gameOver = true;
+						gameState = MENU_SCREEN;
+					}
 				}
 				
 				mouseMotion(tileSet, camera, target, hover, gameState, selectMenu, scroll_window, p);
 
-				//SDL_SetRenderDrawColor(gRenderer, 255, 0, 255, 255);
-				//SDL_RenderDrawLine(gRenderer, 0, scroll_window.y, 640, scroll_window.y);
-				//SDL_RenderDrawLine(gRenderer, 0, scroll_window.y + scroll_window.h, 640, scroll_window.y + scroll_window.h);
 				//Update screen
 				SDL_RenderPresent(gRenderer);
 			}

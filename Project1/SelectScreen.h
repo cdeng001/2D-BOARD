@@ -10,6 +10,7 @@
 #include "Button.h"
 #include "LTexture.h"
 #include "Menu.h"
+#include <vector>
 
 enum player{ PLAYER1, PLAYER2 };
 
@@ -31,12 +32,15 @@ public:
 
 	void addList(int i);
 	bool checkList(int i);
+	void removeList(int ID);
+
+	Button getRemoveButton(int i);
 
 private:
 	Button* characterSet[TOTAL_MONSTER_SPRITES];
 	player current;
-	int listSize;
-	int list[TEAM_SIZE * 2];
+	std::vector<int> list;
 	int curr_hover;
+	std::vector<Button> teamRemove;
 
 };

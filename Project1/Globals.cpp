@@ -1005,14 +1005,16 @@ void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, S
 
 					}
 				}
-				else if (buttonSet[SELECT_BUTTON]->checkClick(mouse_x, mouse_y))
+			}
+			if (buttonSet[SELECT_BUTTON]->checkClick(mouse_x, mouse_y))
+			{
+				if (team1.getCurr() == TEAM_SIZE && team2.getCurr() == TEAM_SIZE)
 				{
-					if (team1.getCurr() == TEAM_SIZE && team2.getCurr() == TEAM_SIZE)
-					{
-						buttonSet[SELECT_BUTTON]->checkClick(mouse_x, mouse_y, gameState);
-					}
+					buttonSet[SELECT_BUTTON]->checkClick(mouse_x, mouse_y, gameState);
 				}
 			}
+			
+			
 		}
 		else if (gameState == PAUSE_SCREEN)
 		{
@@ -1073,7 +1075,23 @@ void mouseHandle(SDL_Event e, Tile* tiles[], Monster* &target, int &gameState, S
 	{
 		if (gameState == CHARACTER_SELECTION)
 		{
-
+			for (int i = 0; i < TEAM_SIZE * 2; i++)
+			{
+				if (ss.getRemoveButton(i).checkClick(mouse_x, mouse_y))
+				{
+					int removeID;
+					if (i < TEAM_SIZE)
+					{
+						removeID = team1.removeMonster(ss.getRemoveButton(i).getType());
+					}
+					else
+					{
+						removeID = team2.removeMonster(ss.getRemoveButton(i).getType());
+					}
+					ss.removeList(removeID);
+				}
+			}
+			
 		}
 	}
 }

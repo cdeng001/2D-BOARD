@@ -319,18 +319,17 @@ int SelectScreen::getHover()
 
 void SelectScreen::addList(int i)
 {
-	if (listSize < TEAM_SIZE * 2)
+	if (list.size() < TEAM_SIZE * 2)
 	{
-		list[listSize] = i;
-		listSize++;
+		list.push_back(i);
 	}
 }
 
 bool SelectScreen::checkList(int x)
 {
-	for (int i = 0; i < listSize; i++)
+	for (int i = 0; i < list.size(); i++)
 	{
-		if (list[i] == x)
+		if (list.at(i) == x)
 		{
 			return true;
 		}
@@ -340,18 +339,33 @@ bool SelectScreen::checkList(int x)
 
 
 SelectScreen::SelectScreen(int a) :
-Menu(a), current(PLAYER1), curr_hover(INT_MAX), listSize(0)
+Menu(a), current(PLAYER1), curr_hover(INT_MAX)
 {
-	for (int i = 0; i < TEAM_SIZE * 2; i++)
-	{
-		list[i] = NULL;
-	}
 
 	buttonSet[SELECT_BUTTON] = new Button();
 	buttonSet[SELECT_BUTTON]->setLoc(SCREEN_WIDTH / 2 - BUTTON_WIDTH / 2, ((SCREEN_HEIGHT - SCREEN_HEIGHT / 4) - BUTTON_HEIGHT / 2) - 5);
 	buttonSet[SELECT_BUTTON]->setActionFunction(changeToStart);
 	buttonSet[SELECT_BUTTON]->setName("Start");
 	getButtonFunction();
+
+	for (int i = 0; i < TEAM_SIZE * 2; i++)
+	{
+		Button temp;
+		if (i < TEAM_SIZE)
+		{
+			temp.setLoc(20, 50 + (TILE_HEIGHT + 10)*i);
+			temp.setSize(TILE_WIDTH, TILE_HEIGHT);
+			temp.setType(i);
+			teamRemove.push_back(temp);
+		}
+		else
+		{
+			temp.setLoc((SCREEN_WIDTH - 20) - TILE_WIDTH, (TILE_HEIGHT + 10)*((i-TEAM_SIZE) + 1));
+			temp.setSize(TILE_WIDTH, TILE_HEIGHT);
+			temp.setType(i-TEAM_SIZE);
+			teamRemove.push_back(temp);
+		}
+	}
 }
 
 void SelectScreen::menuDisplay(SDL_Rect &menuCamera, SDL_Rect &windowCamera, int scrolling_offset)
@@ -455,4 +469,21 @@ void SelectScreen::getButtonFunction()
 		}
 	}
 
+}
+
+Button SelectScreen::getRemoveButton(int i)
+{
+	return this->teamRemove[i];
+}
+
+void SelectScreen::removeList(int ID)
+{
+	for (int j = 0; j < list.size(); j++)
+	{
+		if (list.at(j) == ID)
+		{
+			list.erase(list.begin() + j);
+		}
+	}
+	std::cout << list.size() << std::endl;
 }
