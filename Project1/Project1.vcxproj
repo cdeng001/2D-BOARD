@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AIHandler.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonFunctions.cpp" />
     <ClCompile Include="Dot.cpp" />
@@ -89,6 +90,7 @@
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIHandler.h" />
     <ClInclude Include="Button.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>

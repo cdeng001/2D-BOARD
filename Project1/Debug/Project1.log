@@ -1,27 +1,11 @@
-﻿Build started 1/20/2015 3:16:13 PM.
+﻿Build started 1/23/2015 6:27:33 PM.
      1>Project "C:\Users\Calvin\Documents\GitHub\2D-BOARD\Project1\Project1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SDL2_mixer-2.0.0\include" /I"C:\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include" /I"C:\Users\Calvin\Documents\Visual Studio 2013\Projects\Project1\Project1" /I"C:\SDL2_image-2.0.0\include" /I"C:\SDL2-2.0.3\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Button.cpp ButtonFunctions.cpp Dot.cpp Globals.cpp Icon.cpp ImageAnimate.cpp LTexture.cpp Menu.cpp Monster.cpp SelectScreen.cpp Source.cpp Team.cpp Tile.cpp
-         Team.cpp
-         Source.cpp
-         Generating Code...
-         Compiling...
-         Tile.cpp
-         SelectScreen.cpp
-     1>c:\users\calvin\documents\github\2d-board\project1\selectscreen.cpp(330): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\calvin\documents\github\2d-board\project1\selectscreen.cpp(481): warning C4018: '<' : signed/unsigned mismatch
-         Monster.cpp
-         Menu.cpp
-         LTexture.cpp
-         ImageAnimate.cpp
-         Icon.cpp
-         Globals.cpp
-         Dot.cpp
-         ButtonFunctions.cpp
-         Button.cpp
-         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SDL2_mixer-2.0.0\include" /I"C:\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include" /I"C:\Users\Calvin\Documents\Visual Studio 2013\Projects\Project1\Project1" /I"C:\SDL2_image-2.0.0\include" /I"C:\SDL2-2.0.3\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AIHandler.cpp
+         AIHandler.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Calvin\Documents\GitHub\2D-BOARD\Debug\Project1.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SDL2_mixer-2.0.0\lib\x86" /LIBPATH:"C:\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86" /LIBPATH:"C:\SDL2_image-2.0.0\lib\x86" /LIBPATH:"C:\SDL2-2.0.3\lib\x86" SDL2.lib SDL2main.lib SDL2_image.lib SDL2_mixer.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Calvin\Documents\GitHub\2D-BOARD\Debug\Project1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Calvin\Documents\GitHub\2D-BOARD\Debug\Project1.lib" /MACHINE:X86 Debug\Project1.res
+         Debug\AIHandler.obj
          Debug\Button.obj
          Debug\ButtonFunctions.obj
          Debug\Dot.obj
@@ -41,4 +25,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:10.24
+Time Elapsed 00:00:04.02
