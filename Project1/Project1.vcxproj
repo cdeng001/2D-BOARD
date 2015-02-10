@@ -44,13 +44,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\SDL2_mixer-2.0.0\include;C:\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;C:\Users\Calvin\Documents\Visual Studio 2013\Projects\Project1\Project1;C:\SDL2_image-2.0.0\include;C:\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SDL2_mixer-2.0.0\include;C:\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;C:\Users\Calvin\Documents\Visual Studio 2013\Projects\Project1\Project1;C:\SDL2_image-2.0.0\include;C:\SDL2-2.0.3\include;C:\RakNet\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\SDL2_mixer-2.0.0\lib\x86;C:\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;C:\SDL2_image-2.0.0\lib\x86;C:\SDL2-2.0.3\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -61,19 +63,131 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\SDL2_mixer-2.0.0\include;C:\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;C:\Users\Calvin\Documents\Visual Studio 2013\Projects\Project1\Project1;C:\SDL2_image-2.0.0\include;C:\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SDL2_mixer-2.0.0\include;C:\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include;C:\Users\Calvin\Documents\Visual Studio 2013\Projects\Project1\Project1;C:\SDL2_image-2.0.0\include;C:\SDL2-2.0.3\include;C:\RakNet\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>C:\SDL2_mixer-2.0.0\lib\x86;C:\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86;C:\SDL2_image-2.0.0\lib\x86;C:\SDL2-2.0.3\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Base64Encoder.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\BitStream.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CCRakNetSlidingWindow.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CCRakNetUDT.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CheckSum.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CloudClient.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CloudCommon.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CloudServer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CommandParserInterface.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ConnectionGraph2.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ConsoleServer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DataCompressor.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DirectoryDeltaTransfer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DR_SHA1.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_BytePool.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_ByteQueue.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_HuffmanEncodingTree.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_Table.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DynDNS.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\EmailSender.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\EpochTimeToString.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FileList.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FileListTransfer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FileOperations.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FormatString.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FullyConnectedMesh2.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Getche.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Gets.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\GetTime.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\gettimeofday.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\GridSectorizer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\HTTPConnection.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\HTTPConnection2.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\IncrementalReadInterface.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Itoa.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\LinuxStrings.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\LocklessTypes.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\LogCommandParser.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\MessageFilter.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatPunchthroughClient.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatPunchthroughServer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatTypeDetectionClient.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatTypeDetectionCommon.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatTypeDetectionServer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NetworkIDManager.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NetworkIDObject.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketConsoleLogger.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketFileLogger.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketizedTCP.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketLogger.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketOutputWindowLogger.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PluginInterface2.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PS4Includes.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Rackspace.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakMemoryOverride.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetCommandParser.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_360_720.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_Berkley.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_Berkley_NativeClient.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_NativeClient.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_PS3_PS4.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_PS4.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_Vita.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_WindowsStore8.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_Windows_Linux.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_Windows_Linux_360.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetStatistics.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetTransport2.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetTypes.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakPeer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakSleep.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakString.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakThread.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakWString.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Rand.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RandSync.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ReadyEvent.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RelayPlugin.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ReliabilityLayer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ReplicaManager3.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Router2.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RPC4Plugin.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SecureHandshake.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SendToThread.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SignaledEvent.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SimpleMutex.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SocketLayer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\StatisticsHistory.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\StringCompressor.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\StringTable.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SuperFastHash.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TableSerializer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TCPInterface.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TeamBalancer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TeamManager.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TelnetTransport.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ThreadsafePacketLogger.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TwoWayAuthentication.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPForwarder.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPProxyClient.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPProxyCoordinator.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPProxyServer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\VariableDeltaSerializer.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\VariableListDeltaTracker.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\VariadicSQLParser.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\VitaIncludes.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\WSAStartupSingleton.cpp" />
+    <ClCompile Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\_FindFirst.cpp" />
     <ClCompile Include="AIHandler.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonFunctions.cpp" />
@@ -90,6 +204,160 @@
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\AutopatcherPatchContext.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\AutopatcherRepositoryInterface.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Base64Encoder.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\BitStream.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CCRakNetSlidingWindow.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CCRakNetUDT.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CheckSum.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CloudClient.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CloudCommon.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CloudServer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CommandParserInterface.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ConnectionGraph2.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ConsoleServer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DataCompressor.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DirectoryDeltaTransfer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DR_SHA1.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_BinarySearchTree.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_BPlusTree.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_BytePool.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_ByteQueue.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_Hash.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_Heap.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_HuffmanEncodingTree.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_HuffmanEncodingTreeFactory.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_HuffmanEncodingTreeNode.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_LinkedList.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_List.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_Map.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_MemoryPool.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_Multilist.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_OrderedChannelHeap.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_OrderedList.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_Queue.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_QueueLinkedList.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_RangeList.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_Table.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_ThreadsafeAllocatingQueue.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_Tree.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_WeightedGraph.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DynDNS.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\EmailSender.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\EmptyHeader.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\EpochTimeToString.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Export.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FileList.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FileListNodeContext.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FileListTransfer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FileListTransferCBInterface.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FileOperations.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FormatString.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FullyConnectedMesh2.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Getche.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Gets.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\GetTime.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\gettimeofday.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\GridSectorizer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\HTTPConnection.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\HTTPConnection2.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\IncrementalReadInterface.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\InternalPacket.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Itoa.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Kbhit.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\LinuxStrings.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\LocklessTypes.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\LogCommandParser.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\MessageFilter.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\MessageIdentifiers.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\MTUSize.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NativeFeatureIncludes.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NativeFeatureIncludesOverrides.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NativeTypes.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatPunchthroughClient.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatPunchthroughServer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatTypeDetectionClient.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatTypeDetectionCommon.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatTypeDetectionServer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NetworkIDManager.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NetworkIDObject.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketConsoleLogger.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketFileLogger.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketizedTCP.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketLogger.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketOutputWindowLogger.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketPool.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketPriority.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PluginInterface2.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PS3Includes.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PS4Includes.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Rackspace.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakAlloca.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakAssert.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakMemoryOverride.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetCommandParser.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetDefines.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetDefinesOverrides.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSmartPtr.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetStatistics.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetTime.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetTransport2.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetTypes.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetVersion.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakPeer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakPeerInterface.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakSleep.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakString.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakThread.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakWString.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Rand.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RandSync.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ReadyEvent.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RefCountedObj.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RelayPlugin.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ReliabilityLayer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ReplicaEnums.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ReplicaManager3.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Router2.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RPC4Plugin.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SecureHandshake.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SendToThread.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SignaledEvent.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SimpleMutex.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SimpleTCPServer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SingleProducerConsumer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SocketDefines.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SocketIncludes.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SocketLayer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\StatisticsHistory.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\StringCompressor.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\StringTable.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SuperFastHash.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TableSerializer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TCPInterface.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TeamBalancer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TeamManager.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TelnetTransport.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ThreadPool.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ThreadsafePacketLogger.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TransportInterface.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TwoWayAuthentication.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPForwarder.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPProxyClient.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPProxyCommon.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPProxyCoordinator.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPProxyServer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\VariableDeltaSerializer.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\VariableListDeltaTracker.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\VariadicSQLParser.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\VitaIncludes.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\WindowsIncludes.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\WSAStartupSingleton.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\XBox360Includes.h" />
+    <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\_FindFirst.h" />
     <ClInclude Include="AIHandler.h" />
     <ClInclude Include="Button.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -111,6 +379,14 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Project1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNet.vcproj" />
+    <None Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNet_vc8.vcproj" />
+    <None Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNet_vc9.vcproj" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
