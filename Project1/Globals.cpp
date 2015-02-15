@@ -64,6 +64,7 @@ Mix_Chunk *gMephisto_Select = NULL;
 Mix_Chunk *gBaal_Select = NULL;
 Mix_Chunk *gMalthael_Select = NULL;
 
+
 bool init()
 {
 	//Initialization flag
@@ -89,6 +90,17 @@ bool init()
 			printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
 			success = false;
 		}
+		
+
+		int flags = MIX_INIT_OGG | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_FLAC | MIX_INIT_FLUIDSYNTH | MIX_INIT_MODPLUG;
+		int initted = Mix_Init(flags);
+		if (initted&flags != flags) {
+			printf("Mix_Init: Failed to init required ogg and mod support!\n");
+			printf("Mix_Init: %s\n", Mix_GetError());
+			// handle error
+		}
+
+		printf("There are %d music deocoders available\n", Mix_GetNumMusicDecoders());
 
 		//Create window
 		gWindow = SDL_CreateWindow("Big Boy Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
@@ -136,6 +148,15 @@ bool init()
 
 void loadMusic()
 {
+	gMusic = Mix_LoadMUS("sound/impact.mp3");
+	if (gMusic == NULL)
+	{
+		printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
+	}
+	if (Mix_FadeInMusic(gMusic, -1, 0) == -1) {
+		printf("Mix_PlayMusic: %s\n", Mix_GetError());
+		// well, there's no music, but most games don't break without music...
+	}
 	gDiablo_Select = Mix_LoadWAV("sound/diablotaunt.wav");
 	if (gDiablo_Select == NULL)
 	{
@@ -349,6 +370,8 @@ void close(Tile* tiles[], Button* buttons[])
 	gMephisto_Select = NULL;
 	Mix_FreeChunk(gBaal_Select);
 	gBaal_Select = NULL;
+	Mix_FreeMusic(gMusic);
+	gMusic = NULL;
 
 	//Destroy window	
 	SDL_DestroyRenderer(gRenderer);

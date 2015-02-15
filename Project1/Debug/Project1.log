@@ -1,154 +1,9 @@
-﻿Build started 2/9/2015 5:10:41 PM.
+﻿Build started 2/13/2015 11:32:43 PM.
      1>Project "C:\Users\Calvin\Documents\GitHub\2D-BOARD\Project1\Project1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SDL2_mixer-2.0.0\include" /I"C:\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include" /I"C:\Users\Calvin\Documents\Visual Studio 2013\Projects\Project1\Project1" /I"C:\SDL2_image-2.0.0\include" /I"C:\SDL2-2.0.3\include" /IC:\RakNet\Source /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _WINSOCK_DEPRECATED_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Base64Encoder.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\BitStream.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CCRakNetSlidingWindow.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CCRakNetUDT.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CheckSum.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CloudClient.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CloudCommon.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CloudServer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\CommandParserInterface.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ConnectionGraph2.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ConsoleServer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DataCompressor.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DirectoryDeltaTransfer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DR_SHA1.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_BytePool.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_ByteQueue.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_HuffmanEncodingTree.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DS_Table.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\DynDNS.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\EmailSender.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\EpochTimeToString.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FileList.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FileListTransfer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FileOperations.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FormatString.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\FullyConnectedMesh2.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Getche.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Gets.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\GetTime.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\gettimeofday.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\GridSectorizer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\HTTPConnection.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\HTTPConnection2.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\IncrementalReadInterface.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Itoa.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\LinuxStrings.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\LocklessTypes.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\LogCommandParser.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\MessageFilter.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatPunchthroughClient.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatPunchthroughServer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatTypeDetectionClient.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatTypeDetectionCommon.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NatTypeDetectionServer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NetworkIDManager.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\NetworkIDObject.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketConsoleLogger.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketFileLogger.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketizedTCP.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketLogger.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PacketOutputWindowLogger.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PluginInterface2.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\PS4Includes.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Rackspace.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakMemoryOverride.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetCommandParser.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_360_720.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_Berkley.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_Berkley_NativeClient.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_NativeClient.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_PS3_PS4.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_PS4.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_Vita.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_WindowsStore8.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_Windows_Linux.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetSocket2_Windows_Linux_360.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetStatistics.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetTransport2.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakNetTypes.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakPeer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakSleep.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakString.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakThread.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RakWString.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Rand.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RandSync.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ReadyEvent.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RelayPlugin.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ReliabilityLayer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ReplicaManager3.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\Router2.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\RPC4Plugin.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SecureHandshake.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SendToThread.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SignaledEvent.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SimpleMutex.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SocketLayer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\StatisticsHistory.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\StringCompressor.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\StringTable.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\SuperFastHash.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TableSerializer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TCPInterface.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TeamBalancer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TeamManager.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TelnetTransport.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\ThreadsafePacketLogger.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\TwoWayAuthentication.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPForwarder.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPProxyClient.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPProxyCoordinator.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\UDPProxyServer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\VariableDeltaSerializer.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\VariableListDeltaTracker.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\VariadicSQLParser.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\VitaIncludes.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\WSAStartupSingleton.cpp" "..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\_FindFirst.cpp" AIHandler.cpp Button.cpp ButtonFunctions.cpp Dot.cpp Globals.cpp Icon.cpp ImageAnimate.cpp LTexture.cpp Menu.cpp Monster.cpp SelectScreen.cpp Source.cpp Team.cpp Tile.cpp
-         Tile.cpp
-         Team.cpp
-         Source.cpp
-         SelectScreen.cpp
-     1>c:\users\calvin\documents\github\2d-board\project1\selectscreen.cpp(330): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\calvin\documents\github\2d-board\project1\selectscreen.cpp(481): warning C4018: '<' : signed/unsigned mismatch
-         Monster.cpp
-         Menu.cpp
-         LTexture.cpp
-         ImageAnimate.cpp
-         Icon.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SDL2_mixer-2.0.0\include" /I"C:\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\include" /I"C:\Users\Calvin\Documents\Visual Studio 2013\Projects\Project1\Project1" /I"C:\SDL2_image-2.0.0\include" /I"C:\SDL2-2.0.3\include" /IC:\RakNet\Source /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _WINSOCK_DEPRECATED_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Globals.cpp
          Globals.cpp
-         Dot.cpp
-         ButtonFunctions.cpp
-         Button.cpp
-         AIHandler.cpp
-         _FindFirst.cpp
-         WSAStartupSingleton.cpp
-         VitaIncludes.cpp
-         VariadicSQLParser.cpp
-         VariableListDeltaTracker.cpp
-         VariableDeltaSerializer.cpp
-         Generating Code...
-         Compiling...
-         UDPProxyServer.cpp
-         UDPProxyCoordinator.cpp
-         UDPProxyClient.cpp
-         UDPForwarder.cpp
-         TwoWayAuthentication.cpp
-         ThreadsafePacketLogger.cpp
-         TelnetTransport.cpp
-         TeamManager.cpp
-         TeamBalancer.cpp
-         TCPInterface.cpp
-         TableSerializer.cpp
-         SuperFastHash.cpp
-         StringTable.cpp
-         StringCompressor.cpp
-         StatisticsHistory.cpp
-         SocketLayer.cpp
-         SimpleMutex.cpp
-         SignaledEvent.cpp
-         SendToThread.cpp
-         SecureHandshake.cpp
-         Generating Code...
-         Compiling...
-         RPC4Plugin.cpp
-         Router2.cpp
-         ReplicaManager3.cpp
-         ReliabilityLayer.cpp
-         RelayPlugin.cpp
-         ReadyEvent.cpp
-         RandSync.cpp
-         Rand.cpp
-         RakWString.cpp
-         RakThread.cpp
-         RakString.cpp
-         RakSleep.cpp
-         RakPeer.cpp
-     1>c:\users\calvin\documents\visual studio 2013\projects\samplechat\raknet\rakpeer.cpp(429): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\calvin\documents\visual studio 2013\projects\samplechat\raknet\rakpeer.cpp(577): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\calvin\documents\visual studio 2013\projects\samplechat\raknet\rakpeer.cpp(622): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\calvin\documents\visual studio 2013\projects\samplechat\raknet\rakpeer.cpp(728): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\calvin\documents\visual studio 2013\projects\samplechat\raknet\rakpeer.cpp(733): warning C4018: '<' : signed/unsigned mismatch
-         RakNetTypes.cpp
-         RakNetTransport2.cpp
-         RakNetStatistics.cpp
-         RakNetSocket2_Windows_Linux_360.cpp
-         RakNetSocket2_Windows_Linux.cpp
-         RakNetSocket2_WindowsStore8.cpp
-         RakNetSocket2_Vita.cpp
-         Generating Code...
-         Compiling...
-         RakNetSocket2_PS4.cpp
-         RakNetSocket2_PS3_PS4.cpp
-         RakNetSocket2_NativeClient.cpp
-         RakNetSocket2_Berkley_NativeClient.cpp
-         RakNetSocket2_Berkley.cpp
-         RakNetSocket2_360_720.cpp
-         RakNetSocket2.cpp
-         RakNetSocket.cpp
-         RakNetCommandParser.cpp
-         RakMemoryOverride.cpp
-         Rackspace.cpp
-         PS4Includes.cpp
-         PluginInterface2.cpp
-         PacketOutputWindowLogger.cpp
-         PacketLogger.cpp
-         PacketizedTCP.cpp
-         PacketFileLogger.cpp
-         PacketConsoleLogger.cpp
-         NetworkIDObject.cpp
-         NetworkIDManager.cpp
-         Generating Code...
-         Compiling...
-         NatTypeDetectionServer.cpp
-         NatTypeDetectionCommon.cpp
-         NatTypeDetectionClient.cpp
-         NatPunchthroughServer.cpp
-     1>c:\users\calvin\documents\visual studio 2013\projects\samplechat\raknet\natpunchthroughserver.cpp(246): warning C4018: '<' : signed/unsigned mismatch
-         NatPunchthroughClient.cpp
-         MessageFilter.cpp
-         LogCommandParser.cpp
-         LocklessTypes.cpp
-         LinuxStrings.cpp
-         Itoa.cpp
-         IncrementalReadInterface.cpp
-         HTTPConnection2.cpp
-         HTTPConnection.cpp
-         GridSectorizer.cpp
-         gettimeofday.cpp
-         GetTime.cpp
-         Gets.cpp
-         Getche.cpp
-         FullyConnectedMesh2.cpp
-         FormatString.cpp
-         Generating Code...
-         Compiling...
-         FileOperations.cpp
-         FileListTransfer.cpp
-         FileList.cpp
-         EpochTimeToString.cpp
-         EmailSender.cpp
-         DynDNS.cpp
-         DS_Table.cpp
-         DS_HuffmanEncodingTree.cpp
-         DS_ByteQueue.cpp
-         DS_BytePool.cpp
-         DR_SHA1.cpp
-     1>c:\users\calvin\documents\visual studio 2013\projects\samplechat\raknet\dr_sha1.cpp(11): warning C4005: '_CRT_SECURE_NO_WARNINGS' : macro redefinition
-                 command-line arguments :  see previous definition of '_CRT_SECURE_NO_WARNINGS'
-         DirectoryDeltaTransfer.cpp
-         DataCompressor.cpp
-         ConsoleServer.cpp
-         ConnectionGraph2.cpp
-         CommandParserInterface.cpp
-         CloudServer.cpp
-         CloudCommon.cpp
-         CloudClient.cpp
-         CheckSum.cpp
-         Generating Code...
-         Compiling...
-         CCRakNetUDT.cpp
-         CCRakNetSlidingWindow.cpp
-         BitStream.cpp
-         Base64Encoder.cpp
-         Generating Code...
+     1>c:\users\calvin\documents\github\2d-board\project1\globals.cpp(97): warning C4554: '&' : check operator precedence for possible error; use parentheses to clarify precedence
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Calvin\Documents\GitHub\2D-BOARD\Debug\Project1.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SDL2_mixer-2.0.0\lib\x86" /LIBPATH:"C:\SDL2_ttf-devel-2.0.12-VC\SDL2_ttf-2.0.12\lib\x86" /LIBPATH:"C:\SDL2_image-2.0.0\lib\x86" /LIBPATH:"C:\SDL2-2.0.3\lib\x86" SDL2.lib SDL2main.lib SDL2_image.lib SDL2_mixer.lib SDL2_ttf.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Calvin\Documents\GitHub\2D-BOARD\Debug\Project1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Calvin\Documents\GitHub\2D-BOARD\Debug\Project1.lib" /MACHINE:X86 Debug\Project1.res
          Debug\Base64Encoder.obj
@@ -275,10 +130,9 @@
          Debug\Source.obj
          Debug\Team.obj
          Debug\Tile.obj
-     1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
          Project1.vcxproj -> C:\Users\Calvin\Documents\GitHub\2D-BOARD\Debug\Project1.exe
      1>Done Building Project "C:\Users\Calvin\Documents\GitHub\2D-BOARD\Project1\Project1.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:01:04.03
+Time Elapsed 00:00:09.28

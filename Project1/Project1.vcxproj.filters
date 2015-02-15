@@ -899,6 +899,9 @@
     <ClInclude Include="..\..\..\Visual Studio 2013\Projects\SampleChat\RakNet\XBox360Includes.h">
       <Filter>RakNet</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Project1.rc">

@@ -372,6 +372,7 @@
     <ClInclude Include="LTexture.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SelectScreen.h" />
     <ClInclude Include="Team.h" />

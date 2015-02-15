@@ -115,6 +115,24 @@ int main(int argc, char* args[])
 					//Handle input for the dot
 					dot.handleEvent(e);
 				}
+				
+				
+				//music test 
+				if (Mix_PlayingMusic() == 1){
+					if (gameState != CHARACTER_SELECTION && gameState != MENU_SCREEN){
+						//Stop playing the music
+						std::cout << "not playing" << std::endl;
+						Mix_HaltMusic();
+						//gMusic = Mix_LoadMUS("sound\battle_theme.mp3");
+						//Mix_PlayMusic(gMusic, -1);
+					}/*
+					else{
+						Mix_HaltMusic();
+						gMusic = Mix_LoadMUS("sound\impact.mp3");
+						Mix_PlayMusic(gMusic, -1);
+					}*/
+				}
+				
 
 				if (gameState == GAME_QUIT){
 					quit = true;
